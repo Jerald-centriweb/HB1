@@ -1,0 +1,391 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+
+const featured = site.range.products[3];
+const btnStyle = {
+  solid:
+    'font-size:13px;letter-spacing:1.5px;font-weight:700;border-radius:2px;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:17px 34px;box-shadow:0 14px 34px -12px rgba(243,205,107,.6);',
+  outline:
+    'font-size:13px;letter-spacing:1.5px;font-weight:700;border-radius:2px;color:#f3cd6b;border:1px solid rgba(216,172,78,.45);padding:17px 34px;',
+  plain:
+    'font-size:13px;letter-spacing:1.5px;font-weight:700;border-radius:2px;color:#cdbfa3;padding:17px 18px;',
+};
+---
+
+<Base>
+  <div style="position:relative;width:100%;background:#0b0907;">
+
+    <!-- atmosphere tint overlay (tweakable) -->
+    <div id="hb-atmos" style="position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:soft-light;opacity:0;transition:opacity .6s,background .6s;"></div>
+
+    <!-- ===== NAV ===== -->
+    <nav id="hb-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(18px,4vw,56px);transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent;">
+      <a href="#top" style="display:flex;align-items:center;gap:12px;">
+        <img src="/assets/logo-outline.png" alt={site.brand.name} style="height:46px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));">
+        <span style="display:flex;flex-direction:column;line-height:1;">
+          <span style="font-family:'Archivo Black';font-size:17px;letter-spacing:1px;color:#f3cd6b;">{site.brand.name}</span>
+          <span style="font-family:'Barlow Condensed';font-size:11px;letter-spacing:5px;color:#9c8f76;margin-top:3px;">{site.brand.tagline}</span>
+        </span>
+      </a>
+      <div style="display:flex;align-items:center;gap:30px;" class="hb-desktop-nav">
+        {site.nav.map((item) => (
+          <a href={item.href} style="font-size:13px;letter-spacing:1.5px;font-weight:600;color:#cdbfa3;">{item.label}</a>
+        ))}
+        <a href="#enquire" data-enquire style="font-size:12px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:11px 20px;border-radius:2px;">ENQUIRE TO BUY</a>
+      </div>
+      <button class="hb-burger" style="display:none;background:none;border:1px solid rgba(216,172,78,.4);color:#f3cd6b;padding:9px 12px;border-radius:2px;font-size:13px;letter-spacing:1px;cursor:pointer;">MENU</button>
+    </nav>
+
+    <!-- mobile drawer -->
+    <div id="hb-drawer" style="position:fixed;z-index:99;top:0;right:0;bottom:0;width:min(80vw,320px);background:#0c0905;border-left:1px solid rgba(216,172,78,.2);flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:transform .4s cubic-bezier(.16,1,.3,1);box-shadow:-20px 0 60px rgba(0,0,0,.6);display:flex;transform:translateX(105%);">
+      {site.nav.map((item) => (
+        <a href={item.href} data-close-nav style="font-size:18px;letter-spacing:2px;font-weight:700;">{item.label}</a>
+      ))}
+      <a href="#enquire" data-enquire style="font-size:15px;letter-spacing:2px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:14px 26px;border-radius:2px;">ENQUIRE TO BUY</a>
+    </div>
+
+    <!-- ===== HERO + STORY (cohesive sticky scroll scene) ===== -->
+    <section id="top" class="hb-scene" style="position:relative;overflow:hidden;padding:0 clamp(18px,4vw,56px);">
+      <!-- Hero honey backdrop: subtle muted loop (no scroll-scrubbing). The
+           preview toggle (bottom-right) shows/hides it; the choice persists. -->
+      <video
+        id="hb-hero-video"
+        muted
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+        style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.10;z-index:1;pointer-events:none;"
+      >
+        <source src="/assets/video/hero.mp4" type="video/mp4">
+      </video>
+      <div data-parallax="0.22" style="position:absolute;inset:-10% -10% 0 -10%;background:radial-gradient(120% 70% at 78% 12%,rgba(58,42,16,.85),transparent 58%),radial-gradient(80% 70% at 8% 92%,rgba(40,30,12,.75),transparent 60%),linear-gradient(180deg,#0d0a06,#070503);"></div>
+      <div data-parallax="0.45" style="position:absolute;inset:0;opacity:.42;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2296%22 viewBox=%220 0 56 96%22><g fill=%22none%22 stroke=%22%23d8ac4e%22 stroke-opacity=%220.10%22 stroke-width=%221%22><path d=%22M28 1L54 16v32L28 63 2 48V16z%22/><path d=%22M28 49l26 15v32M28 49L2 64v32%22/></g></svg>');background-size:56px 96px;"></div>
+
+      <div class="hb-scene-grid" style="position:relative;z-index:2;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(24px,4vw,64px);align-items:start;">
+
+        <!-- LEFT: narrative panels that scroll past the pinned product -->
+        <div class="hb-scene-copy">
+          <div class="hb-panel" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:124px 0 70px;">
+            <div data-reveal>
+              <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(216,172,78,.35);border-radius:40px;padding:7px 16px;margin-bottom:26px;">
+                <span style="width:6px;height:6px;border-radius:50%;background:#f3cd6b;box-shadow:0 0 10px #f3cd6b;animation:hb-pulse 2s infinite;"></span>
+                <span style="font-size:11px;letter-spacing:3px;color:#cdbfa3;font-weight:600;">{site.hero.badge}</span>
+              </div>
+              <h1 style="font-family:'Archivo Black';font-size:clamp(44px,6vw,98px);line-height:.92;margin:0;letter-spacing:-1px;">
+                <span style="color:#f4ede0;">{site.hero.titleTop}</span><br>
+                <span style="background:linear-gradient(180deg,#f6d680,#c8922f);-webkit-background-clip:text;background-clip:text;color:transparent;">{site.hero.titleBottom}</span>
+              </h1>
+              <p style="font-size:clamp(16px,1.4vw,20px);color:#cdbfa3;max-width:520px;margin:26px 0 0;line-height:1.55;font-weight:500;">{site.hero.sub}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;">
+                <a href={site.hero.ctaPrimary.href} data-enquire style="font-size:13px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:16px 30px;border-radius:2px;box-shadow:0 12px 34px -10px rgba(243,205,107,.5);">{site.hero.ctaPrimary.label}</a>
+                <a href={site.hero.ctaSecondary.href} style="font-size:13px;letter-spacing:1.5px;font-weight:700;color:#f3cd6b;border:1px solid rgba(216,172,78,.45);padding:16px 30px;border-radius:2px;">{site.hero.ctaSecondary.label}</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="hb-panel" style="min-height:96vh;display:flex;flex-direction:column;justify-content:center;padding:30px 0 120px;">
+            <div data-reveal style="font-size:12px;letter-spacing:5px;color:#a8842f;font-weight:700;margin-bottom:22px;">{site.story.eyebrow}</div>
+            <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(28px,3.6vw,52px);line-height:1.06;margin:0;letter-spacing:-.5px;">{site.story.heading}</h2>
+            <p data-reveal style="font-size:clamp(15px,1.3vw,18px);color:#b6a98f;max-width:560px;margin:28px 0 0;line-height:1.7;">{site.story.body}</p>
+            <div data-reveal style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(216,172,78,.14);border:1px solid rgba(216,172,78,.14);margin-top:44px;max-width:560px;" class="hb-stat3">
+              {site.story.stats.map((s) => (
+                <div style="background:#0d0a06;padding:30px 16px;"><div style="font-family:'Archivo Black';font-size:clamp(28px,3.4vw,44px);background:linear-gradient(180deg,#f6d680,#c8922f);-webkit-background-clip:text;background-clip:text;color:transparent;">{s.value}</div><div style="font-size:11.5px;letter-spacing:1.5px;color:#9c8f76;margin-top:8px;">{s.label}</div></div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: the product, pinned -->
+        <div class="hb-scene-stage" style="position:relative;">
+          <div id="hb-scene-jar" class="hb-sticky-jar" style="position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;">
+            <div data-glow="1" style="position:absolute;width:80%;max-width:520px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(243,205,107,.20),rgba(216,172,78,.05) 48%,transparent 68%);filter:blur(6px);"></div>
+            <div style="position:absolute;bottom:20%;width:42%;max-width:260px;height:26px;background:radial-gradient(ellipse,rgba(0,0,0,.55),transparent 70%);"></div>
+            <img id="hb-scene-img" src={featured.img} alt={`Honey Badgers MGO ${featured.num} Mānuka honey`} style="position:relative;z-index:2;width:min(72%,372px);height:auto;filter:drop-shadow(0 36px 46px rgba(0,0,0,.55));transform-origin:center center;will-change:transform;">
+            <div style="position:absolute;z-index:3;top:20%;right:4%;width:106px;height:106px;border-radius:50%;background:#0f0c07;border:1px solid rgba(216,172,78,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 14px 30px rgba(0,0,0,.5);">
+              <span style="font-family:'Archivo Black';font-size:11px;letter-spacing:2px;color:#f3cd6b;">MGO</span>
+              <span style="font-family:'Archivo Black';font-size:24px;color:#f4ede0;line-height:1;">{site.hero.badgeNum}</span>
+              <span style="font-size:8px;letter-spacing:1.5px;color:#9c8f76;margin-top:3px;">CERTIFIED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="hb-scroll-hint" style="position:absolute;bottom:26px;left:clamp(18px,4vw,56px);z-index:3;font-size:10px;letter-spacing:3px;color:#6e6450;display:flex;flex-direction:column;align-items:center;gap:8px;transition:opacity .4s;">SCROLL<span style="width:1px;height:34px;background:linear-gradient(#d8ac4e,transparent);"></span></div>
+    </section>
+
+    <!-- ===== TRUST STRIP ===== -->
+    <section style="border-top:1px solid rgba(216,172,78,.14);border-bottom:1px solid rgba(216,172,78,.14);background:#0e0b07;">
+      <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);" class="hb-trust">
+        {site.trust.map((t, i) => (
+          <div data-reveal style={`padding:30px clamp(14px,2vw,28px);${i < site.trust.length - 1 ? 'border-right:1px solid rgba(216,172,78,.1);' : ''}`}>
+            <div style="font-family:'Archivo Black';font-size:13px;color:#f3cd6b;letter-spacing:1px;margin-bottom:14px;">{t.n}</div>
+            <div style="font-size:13px;font-weight:700;letter-spacing:.5px;margin-bottom:5px;">{t.title}</div>
+            <div style="font-size:12.5px;color:#9c8f76;line-height:1.5;">{t.body}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ===== RANGE (interactive product selector) ===== -->
+    <section id="range" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);background:linear-gradient(180deg,#0b0907,#100c07);border-top:1px solid rgba(216,172,78,.12);overflow:hidden;">
+      <div data-parallax="0.3" data-glow="1" style="position:absolute;right:-12%;top:14%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.10),transparent 62%);"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;">
+        <div style="text-align:center;margin-bottom:18px;">
+          <div data-reveal style="font-size:12px;letter-spacing:5px;color:#a8842f;font-weight:700;margin-bottom:16px;">{site.range.eyebrow}</div>
+          <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(30px,4.6vw,66px);margin:0;letter-spacing:-.5px;">{site.range.heading}</h2>
+          <p data-reveal style="font-size:clamp(15px,1.3vw,18px);color:#b6a98f;max-width:640px;margin:20px auto 0;line-height:1.65;">{site.range.sub}</p>
+        </div>
+
+        <div data-reveal class="hb-selector" style="margin-top:60px;display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(30px,5vw,72px);align-items:center;">
+
+          <div class="hb-feature-stage" style="position:relative;display:flex;align-items:center;justify-content:center;min-height:480px;">
+            <div data-glow="1" style="position:absolute;width:78%;height:78%;border-radius:50%;background:radial-gradient(circle,rgba(243,205,107,.18),rgba(216,172,78,.06) 45%,transparent 68%);filter:blur(6px);"></div>
+            <div style="position:absolute;bottom:9%;width:42%;height:24px;background:radial-gradient(ellipse,rgba(0,0,0,.55),transparent 70%);"></div>
+            <img id="hb-feat-img" src={featured.img} alt="Honey Badgers Mānuka honey" style="position:relative;z-index:2;width:min(70%,360px);height:auto;filter:drop-shadow(0 30px 44px rgba(0,0,0,.6));transition:opacity .35s,transform .55s cubic-bezier(.16,1,.3,1);">
+            <div id="hb-feat-badge" style="position:absolute;z-index:3;top:5%;right:3%;width:108px;height:108px;border-radius:50%;background:#0f0c07;border:1px solid rgba(243,205,107,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 16px 34px rgba(0,0,0,.55);transition:opacity .4s;">
+              <span style="font-family:'Archivo Black';font-size:10px;letter-spacing:2px;color:#9c8f76;">MGO</span>
+              <span id="hb-feat-badge-num" style="font-family:'Archivo Black';font-size:26px;background:linear-gradient(180deg,#f9e29a,#d99f2c);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;">{featured.num}</span>
+              <span id="hb-feat-badge-tag" style="font-size:8px;letter-spacing:1.5px;color:#f3cd6b;margin-top:4px;">{featured.tag}</span>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex;align-items:baseline;gap:14px;">
+              <span style="font-size:13px;letter-spacing:3px;color:#9c8f76;font-weight:700;">MGO</span>
+              <span id="hb-feat-num" style="font-family:'Archivo Black';font-size:clamp(52px,7vw,92px);line-height:.9;background:linear-gradient(180deg,#f9e29a,#d99f2c);-webkit-background-clip:text;background-clip:text;color:transparent;transition:opacity .3s;">{featured.num}</span>
+            </div>
+            <div id="hb-feat-name" style="font-family:'Archivo Black';font-size:clamp(18px,2vw,26px);letter-spacing:.5px;color:#f4ede0;margin-top:8px;transition:opacity .3s;">{featured.name}</div>
+            <p id="hb-feat-desc" style="font-size:15px;color:#b6a98f;line-height:1.7;margin:14px 0 0;max-width:440px;min-height:78px;transition:opacity .3s;">{featured.desc}</p>
+
+            <div style="margin:30px 0 8px;max-width:460px;">
+              <div style="display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:1.5px;color:#8a7e66;margin-bottom:9px;"><span>EVERYDAY</span><span>EXCEPTIONAL</span></div>
+              <div style="position:relative;height:9px;border-radius:6px;background:#1a150d;border:1px solid rgba(216,172,78,.2);overflow:hidden;">
+                <div id="hb-meter" style="position:absolute;inset:0 100% 0 0;background:linear-gradient(90deg,#7a5c1e,#f3cd6b);transition:right .7s cubic-bezier(.16,1,.3,1);"></div>
+              </div>
+            </div>
+
+            <div id="hb-rail" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;max-width:460px;">
+              {site.range.products.map((p, i) => (
+                <button data-idx={i} class="hb-pick" style="cursor:pointer;background:linear-gradient(180deg,#16110a,#0c0905);border:2px solid rgba(216,172,78,.18);border-radius:10px;padding:12px 6px 9px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:border-color .3s,transform .3s,box-shadow .3s;">
+                  <img src={p.img} alt={`MGO ${p.num}`} style="width:100%;max-width:62px;height:auto;pointer-events:none;">
+                  <span style="font-family:'Archivo Black';font-size:13px;color:#f3cd6b;">{p.num}</span>
+                </button>
+              ))}
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:30px;">
+              <a href={site.range.cta.href} data-enquire style="font-size:13px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:15px 28px;border-radius:2px;box-shadow:0 12px 30px -12px rgba(243,205,107,.5);">{site.range.cta.label}</a>
+              <span style="font-size:12.5px;color:#8a7e66;">{site.range.note}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== FURY ===== -->
+    <section id="fury" style="position:relative;padding:clamp(80px,10vw,150px) clamp(18px,4vw,56px);background:radial-gradient(120% 90% at 80% 10%,rgba(60,44,16,.7),transparent 55%),#070503;overflow:hidden;border-top:1px solid rgba(216,172,78,.12);">
+      <div data-parallax="0.4" style="position:absolute;inset:0;opacity:.6;background:linear-gradient(115deg,transparent 40%,rgba(243,205,107,.05) 50%,transparent 60%);"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,80px);align-items:center;" class="hb-fury-grid">
+        <div style="position:relative;display:flex;justify-content:center;" data-reveal>
+          <div data-glow="1" style="position:absolute;width:90%;height:86%;border-radius:50%;background:radial-gradient(circle,rgba(243,205,107,.16),rgba(216,172,78,.05) 45%,transparent 68%);top:6%;"></div>
+          <img src={site.fury.img} alt="FURY MGO 514+ box of 15 sachets" style="position:relative;z-index:2;width:min(92%,440px);height:auto;filter:drop-shadow(0 36px 50px rgba(0,0,0,.55));animation:hb-float 7s ease-in-out infinite;">
+          <div style="position:absolute;z-index:3;bottom:6%;right:2%;width:96px;height:96px;border-radius:50%;background:#0b0805;border:1px solid rgba(243,205,107,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+            <span style="font-family:'Archivo Black';font-size:20px;color:#f3cd6b;line-height:1;">{site.fury.badgeCount}</span>
+            <span style="font-size:8px;letter-spacing:1.5px;color:#9c8f76;margin-top:4px;" set:html={site.fury.badgeLabel}></span>
+          </div>
+        </div>
+        <div data-reveal>
+          <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(243,205,107,.4);border-radius:40px;padding:7px 16px;margin-bottom:22px;">
+            <span style="font-size:11px;letter-spacing:3px;color:#f3cd6b;font-weight:700;">{site.fury.badge}</span>
+          </div>
+          <h2 style="font-family:'Archivo Black';font-size:clamp(40px,5.6vw,84px);line-height:.92;margin:0;letter-spacing:-1px;">
+            <span style="background:linear-gradient(180deg,#f9e29a,#d99f2c);-webkit-background-clip:text;background-clip:text;color:transparent;">{site.fury.title}</span>
+          </h2>
+          <div style="font-family:'Barlow Condensed';font-size:clamp(18px,2vw,26px);letter-spacing:3px;color:#cdbfa3;font-weight:600;margin-top:4px;">{site.fury.tagline}</div>
+          <p style="font-size:clamp(15px,1.4vw,18px);color:#b6a98f;max-width:520px;margin:24px 0 0;line-height:1.65;">{site.fury.body}</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px;" class="hb-fury3">
+            {site.fury.stats.map((s) => (
+              <div style="border:1px solid rgba(216,172,78,.18);border-radius:5px;padding:18px 14px;background:rgba(20,16,9,.6);">
+                <div style="font-family:'Archivo Black';font-size:15px;color:#f3cd6b;">{s.k}</div>
+                <div style="font-size:12px;color:#9c8f76;margin-top:6px;line-height:1.45;">{s.v}</div>
+              </div>
+            ))}
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;">
+            {site.fury.tags.map((tag) => (
+              <span style="font-size:11px;letter-spacing:1px;color:#cdbfa3;border:1px solid rgba(216,172,78,.2);border-radius:30px;padding:6px 13px;">{tag}</span>
+            ))}
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:32px;">
+            <a href={site.fury.cta.href} data-enquire data-enquire-product="FURY sachets" style="font-size:13px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:16px 30px;border-radius:2px;">{site.fury.cta.label}</a>
+            <span style="font-size:12.5px;color:#8a7e66;">{site.fury.note}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COMPARISON ===== -->
+    <section style="padding:clamp(70px,9vw,120px) clamp(18px,4vw,56px);background:#0b0907;">
+      <div style="max-width:1080px;margin:0 auto;">
+        <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(26px,3.6vw,48px);text-align:center;margin:0 0 12px;">{site.compare.heading}</h2>
+        <p data-reveal style="text-align:center;font-size:15px;color:#9c8f76;margin:0 0 48px;">{site.compare.sub}</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;" class="hb-compare">
+          {site.compare.cards.map((card) => (
+            <div data-reveal style={`background:linear-gradient(180deg,${card.accent ? '#171005' : '#130f08'},#0a0805);border:1px solid ${card.accent ? 'rgba(243,205,107,.35)' : 'rgba(216,172,78,.18)'};border-radius:8px;padding:34px 30px;`}>
+              <div style="position:relative;display:flex;justify-content:center;margin-bottom:22px;"><div style={`position:absolute;width:${card.accent ? '150px' : '200px'};height:${card.accent ? '175px' : '170px'};border-radius:50%;background:radial-gradient(circle,rgba(243,205,107,.14),transparent 66%);`}></div><img src={card.img} alt={card.title} style={`position:relative;z-index:2;height:${card.accent ? '185px' : '180px'};width:auto;display:block;filter:drop-shadow(0 18px 24px rgba(0,0,0,.45));`}></div>
+              <div style="font-family:'Archivo Black';font-size:18px;text-align:center;color:#f3cd6b;">{card.title}</div>
+              <div style="font-size:12px;letter-spacing:1.5px;color:#8a7e66;text-align:center;margin:6px 0 20px;">{card.subtitle}</div>
+              <div style="display:grid;gap:11px;font-size:13.5px;color:#cdbfa3;">
+                {card.rows.map((row, ri) => (
+                  <div style={`display:flex;justify-content:space-between;${ri < card.rows.length - 1 ? 'border-bottom:1px solid rgba(216,172,78,.1);padding-bottom:9px;' : ''}`}><span style="color:#8a7e66;">{row.k}</span><span>{row.v}</span></div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUALITY ===== -->
+    <section id="quality" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);background:linear-gradient(180deg,#100c07,#0b0907);border-top:1px solid rgba(216,172,78,.12);overflow:hidden;">
+      <div data-parallax="0.3" data-glow="1" style="position:absolute;left:-10%;top:-6%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.10),transparent 60%);"></div>
+      <div style="position:relative;max-width:1100px;margin:0 auto;text-align:center;">
+        <div data-reveal style="font-size:12px;letter-spacing:5px;color:#a8842f;font-weight:700;margin-bottom:18px;">{site.quality.eyebrow}</div>
+        <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(28px,4vw,56px);line-height:1.04;margin:0;letter-spacing:-.5px;" set:html={site.quality.heading}></h2>
+        <p data-reveal style="font-size:clamp(15px,1.3vw,18px);color:#b6a98f;max-width:660px;margin:24px auto 0;line-height:1.7;">{site.quality.body}</p>
+      </div>
+
+      <!-- traceability stepper -->
+      <div data-reveal class="hb-trace" style="position:relative;max-width:1080px;margin:clamp(50px,6vw,76px) auto 0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;">
+        <div style="position:absolute;top:19px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(216,172,78,.45),transparent);"></div>
+        {site.quality.steps.map((step) => (
+          <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 8px;">
+            <div style="width:38px;height:38px;border-radius:50%;background:#0d0a06;border:1px solid rgba(243,205,107,.5);display:flex;align-items:center;justify-content:center;font-family:'Archivo Black';font-size:12px;color:#f3cd6b;box-shadow:0 0 0 6px rgba(11,9,7,1);position:relative;z-index:2;">{step.n}</div>
+            <div style="font-family:'Archivo Black';font-size:13px;letter-spacing:1px;color:#f4ede0;margin-top:16px;">{step.title}</div>
+            <div style="font-size:11.5px;color:#8a7e66;margin-top:5px;line-height:1.4;">{step.desc}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- certification tiles -->
+      <div data-reveal class="hb-certs" style="max-width:1080px;margin:clamp(46px,5vw,64px) auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        {site.quality.certs.map((c) => (
+          <div class="hb-cert" style="background:linear-gradient(180deg,#141009,#0c0905);border:1px solid rgba(216,172,78,.18);border-radius:8px;padding:30px 22px;text-align:center;transition:transform .35s,border-color .35s,box-shadow .35s;">
+            <div style="width:64px;height:64px;margin:0 auto 16px;border-radius:50%;border:1px solid rgba(243,205,107,.4);background:radial-gradient(circle at 50% 35%,rgba(243,205,107,.12),#0d0a06);display:flex;align-items:center;justify-content:center;font-family:'Archivo Black';font-size:18px;background-clip:padding-box;color:#f3cd6b;">{c.mark}</div>
+            <div style="font-size:13px;font-weight:800;letter-spacing:.8px;color:#f4ede0;">{c.title}</div>
+            <div style="font-size:12px;color:#8a7e66;margin-top:6px;line-height:1.45;">{c.desc}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ===== TRADE ===== -->
+    <section id="trade" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);background:#070503;border-top:1px solid rgba(216,172,78,.12);overflow:hidden;">
+      <div data-parallax="0.3" data-glow="1" style="position:absolute;right:-8%;top:-10%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.1),transparent 60%);"></div>
+      <div style="position:relative;max-width:1180px;margin:0 auto;">
+        <div data-reveal style="text-align:center;margin-bottom:54px;">
+          <div style="font-size:12px;letter-spacing:5px;color:#a8842f;font-weight:700;margin-bottom:16px;">{site.trade.eyebrow}</div>
+          <h2 style="font-family:'Archivo Black';font-size:clamp(28px,4.2vw,58px);margin:0;" set:html={site.trade.heading}></h2>
+          <p style="font-size:16px;color:#b6a98f;max-width:640px;margin:22px auto 0;line-height:1.65;">{site.trade.body}</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start;" class="hb-trade-grid">
+          <div data-reveal>
+            <div style="font-size:12px;letter-spacing:2px;color:#8a7e66;margin-bottom:16px;">WE SUPPLY</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(216,172,78,.14);border:1px solid rgba(216,172,78,.14);border-radius:6px;overflow:hidden;">
+              {site.trade.supply.map((s, i) => (
+                <div style={`background:#0c0905;padding:18px;font-size:13.5px;color:#cdbfa3;${i === site.trade.supply.length - 1 && site.trade.supply.length % 2 === 1 ? 'grid-column:span 2;' : ''}`}>{s}</div>
+              ))}
+            </div>
+          </div>
+          <div data-reveal style="background:linear-gradient(180deg,#171005,#0b0805);border:1px solid rgba(243,205,107,.3);border-radius:8px;padding:30px;">
+            <div style="font-size:12px;letter-spacing:2px;color:#8a7e66;margin-bottom:16px;">WE OFFER</div>
+            <div style="display:grid;gap:13px;">
+              {site.trade.offer.map((o) => (
+                <div style="display:flex;gap:11px;align-items:flex-start;"><span style="color:#f3cd6b;">◆</span><span style="font-size:13.5px;color:#cdbfa3;">{o}</span></div>
+              ))}
+            </div>
+            <a href={site.trade.cta.href} data-enquire data-enquire-product="Wholesale / bulk" style="display:block;text-align:center;margin-top:24px;font-size:12px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:14px;border-radius:2px;">{site.trade.cta.label}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section id="enquire" style="position:relative;padding:clamp(90px,12vw,170px) clamp(18px,4vw,56px);text-align:center;background:radial-gradient(120% 90% at 50% 0%,rgba(60,44,16,.65),transparent 60%),#0b0907;overflow:hidden;border-top:1px solid rgba(216,172,78,.12);">
+      <div data-parallax="0.4" style="position:absolute;inset:0;opacity:.4;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2296%22 viewBox=%220 0 56 96%22><g fill=%22none%22 stroke=%22%23d8ac4e%22 stroke-opacity=%220.10%22 stroke-width=%221%22><path d=%22M28 1L54 16v32L28 63 2 48V16z%22/></g></svg>');background-size:56px 96px;"></div>
+      <div data-reveal style="position:relative;max-width:780px;margin:0 auto;">
+        <img src="/assets/logo-filled.png" alt={site.brand.name} style="height:90px;width:auto;margin:0 auto 28px;display:block;filter:drop-shadow(0 10px 24px rgba(0,0,0,.6));">
+        <h2 style="font-family:'Archivo Black';font-size:clamp(34px,5.4vw,76px);line-height:.96;margin:0;letter-spacing:-1px;">{site.finalCta.titleTop}<br><span style="background:linear-gradient(180deg,#f9e29a,#d99f2c);-webkit-background-clip:text;background-clip:text;color:transparent;">{site.finalCta.titleBottom}</span></h2>
+        <p style="font-size:clamp(15px,1.5vw,19px);color:#b6a98f;max-width:540px;margin:24px auto 0;line-height:1.6;">{site.finalCta.body}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:38px;">
+          {site.finalCta.buttons.map((b) => (
+            <a href={b.href} data-enquire={b.href === '#enquire' ? '' : undefined} style={btnStyle[b.variant]}>{b.label}</a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer style="background:#070503;border-top:1px solid rgba(216,172,78,.14);padding:clamp(40px,5vw,64px) clamp(18px,4vw,56px) 36px;">
+      <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;align-items:center;">
+        <div style="display:flex;align-items:center;gap:13px;">
+          <img src="/assets/logo-outline.png" alt="" style="height:54px;width:auto;">
+          <div>
+            <div style="font-family:'Archivo Black';font-size:16px;color:#f3cd6b;letter-spacing:1px;">{site.brand.name}</div>
+            <div style="font-family:'Barlow Condensed';font-size:11px;letter-spacing:5px;color:#9c8f76;">{site.brand.tagline}</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:26px;flex-wrap:wrap;font-size:12px;letter-spacing:1.5px;color:#9c8f76;">
+          {site.footer.links.map((l) => (<a href={l.href}>{l.label}</a>))}
+        </div>
+      </div>
+      <div style="max-width:1280px;margin:30px auto 0;border-top:1px solid rgba(216,172,78,.1);padding-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:11px;color:#6e6450;letter-spacing:.5px;">
+        <span>{site.footer.copyright}</span>
+        <span>{site.footer.disclaimer}</span>
+      </div>
+    </footer>
+
+    <!-- ===== ENQUIRY MODAL ===== -->
+    <div id="hb-modal" data-close-enquire style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(6,4,2,.55);backdrop-filter:blur(10px) saturate(1.2);-webkit-backdrop-filter:blur(10px) saturate(1.2);transition:opacity .35s;opacity:0;pointer-events:none;">
+      <div id="hb-modal-card" style="position:relative;width:min(520px,100%);max-height:90vh;overflow:auto;border-radius:18px;padding:34px clamp(22px,4vw,38px);background:linear-gradient(155deg,rgba(34,26,14,.72),rgba(12,9,6,.78));border:1px solid rgba(243,205,107,.28);box-shadow:0 40px 90px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(26px) saturate(1.5);-webkit-backdrop-filter:blur(26px) saturate(1.5);transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .35s;transform:translateY(26px) scale(.97);opacity:0;">
+        <div style="position:absolute;inset:0;border-radius:18px;background:linear-gradient(140deg,rgba(255,255,255,.10),rgba(255,255,255,0) 45%);pointer-events:none;"></div>
+        <button data-close-enquire style="position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#f4ede0;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+        <div style="position:relative;">
+          <img src="/assets/logo-outline.png" alt="" style="height:50px;width:auto;margin-bottom:18px;">
+          <div style="font-size:11px;letter-spacing:4px;color:#f3cd6b;font-weight:700;margin-bottom:10px;">{site.modal.eyebrow}</div>
+          <h3 style="font-family:'Archivo Black';font-size:clamp(22px,3vw,30px);margin:0 0 8px;line-height:1.05;">{site.modal.heading}</h3>
+          <p style="font-size:14px;color:#cdbfa3;line-height:1.6;margin:0 0 22px;">{site.modal.body}</p>
+          <div style="display:grid;gap:12px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="hb-modal-row">
+              <input id="hb-enquire-name" placeholder={site.modal.placeholderName} style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;color:#f4ede0;font-family:inherit;font-size:14px;outline:none;">
+              <input id="hb-enquire-email" placeholder={site.modal.placeholderEmail} style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;color:#f4ede0;font-family:inherit;font-size:14px;outline:none;">
+            </div>
+            <select id="hb-enquire-product" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;color:#cdbfa3;font-family:inherit;font-size:14px;outline:none;appearance:none;">
+              {site.modal.products.map((p) => (<option style="color:#111;">{p}</option>))}
+            </select>
+            <select id="hb-enquire-role" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;color:#cdbfa3;font-family:inherit;font-size:14px;outline:none;appearance:none;">
+              {site.modal.roles.map((r) => (<option style="color:#111;">{r}</option>))}
+            </select>
+            <textarea id="hb-enquire-message" placeholder={site.modal.placeholderMessage} rows="3" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;color:#f4ede0;font-family:inherit;font-size:14px;outline:none;resize:vertical;"></textarea>
+            <a id="hb-modal-send" href={`mailto:${site.brand.email}`} style="text-align:center;font-size:13px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:15px;border-radius:8px;box-shadow:0 14px 30px -12px rgba(243,205,107,.6);">{site.modal.submitLabel}</a>
+            <div style="text-align:center;font-size:11px;color:#8a7e66;">{site.modal.emailNote}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  {/* Preview-only control: toggle the hero background video. Remove at launch. */}
+  <button id="hb-bg-toggle" aria-label="Toggle background video" style="position:fixed;z-index:300;right:16px;bottom:16px;display:flex;align-items:center;gap:8px;background:rgba(12,9,5,.82);border:1px solid rgba(243,205,107,.4);color:#f3cd6b;font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:1.5px;font-weight:700;padding:9px 14px;border-radius:30px;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,.45);">
+    <span id="hb-bg-toggle-dot" style="width:7px;height:7px;border-radius:50%;background:#f3cd6b;box-shadow:0 0 8px #f3cd6b;"></span>
+    <span id="hb-bg-toggle-label">BACKDROP: ON</span>
+  </button>
+
+  <script>
+    import '../scripts/hb.js';
+    import '../scripts/motion.js';
+  </script>
+</Base>
