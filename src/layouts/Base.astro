@@ -111,6 +111,19 @@ const {
         overflow: hidden;
       }
 
+      /* Enquiry form: let fields shrink inside the modal card (no mobile clip) */
+      #hb-modal-card input,
+      #hb-modal-card select,
+      #hb-modal-card textarea {
+        min-width: 0;
+        max-width: 100%;
+      }
+      @media (max-width: 400px) {
+        .hb-modal-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
       /* Respect prefers-reduced-motion */
       @media (prefers-reduced-motion: reduce) {
         #hb-hero-video,

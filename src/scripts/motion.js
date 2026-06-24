@@ -328,7 +328,10 @@ const heroVid = document.getElementById('hb-hero-video');
 const bgToggle = document.getElementById('hb-bg-toggle');
 const bgLabel = document.getElementById('hb-bg-toggle-label');
 const bgDot = document.getElementById('hb-bg-toggle-dot');
-let bgVideoOn = (localStorage.getItem('hb-bg-video') || 'on') !== 'off';
+// Default the honey backdrop OFF on mobile (save data/battery); desktop on.
+// An explicit toggle choice (localStorage) always wins.
+const _bgDefault = window.innerWidth <= 900 ? 'off' : 'on';
+let bgVideoOn = (localStorage.getItem('hb-bg-video') || _bgDefault) !== 'off';
 function applyBg() {
   if (heroVid && heroVid._hbReady) {
     if (bgVideoOn && !reduce) {
