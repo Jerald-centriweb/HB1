@@ -134,6 +134,47 @@ const {
           will-change: auto !important;
         }
       }
+
+      /* ── WARMTH + DEPTH LAYER ─────────────────────────────────────────────
+         Site-wide warm vignette fixed behind everything. Pointer-events:none.
+         Very subtle — just takes the flat black edge off the viewport. */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 130% 90% at 50% 50%,
+          transparent 52%,
+          rgba(18, 10, 3, 0.55) 100%
+        );
+      }
+
+      /* ── FAINT HONEYCOMB TEXTURE OVERLAY ──────────────────────────────────
+         Same SVG honeycomb as in the hero/CTA but applied globally at very
+         low opacity so every section has a consistent micro-texture. */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.055;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='96' viewBox='0 0 56 96'%3E%3Cg fill='none' stroke='%23d8ac4e' stroke-opacity='1' stroke-width='1'%3E%3Cpath d='M28 1L54 16v32L28 63 2 48V16z'/%3E%3Cpath d='M28 49l26 15v32M28 49L2 64v32'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 56px 96px;
+      }
+
+      /* ── SECTION BREATHING ROOM ────────────────────────────────────────────
+         A touch more vertical padding in the main content sections.
+         The hero and enquiry sections manage their own padding via inline styles. */
+      #range,
+      #fury,
+      #quality,
+      #trade {
+        padding-top: calc(clamp(80px, 10vw, 140px) + 12px);
+        padding-bottom: calc(clamp(80px, 10vw, 140px) + 12px);
+      }
     </style>
   </body>
 </html>

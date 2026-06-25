@@ -30,7 +30,7 @@ export const site = {
   story: {
     eyebrow: 'WHERE IT COMES FROM',
     heading: 'Straight from the wild corners of New Zealand.',
-    body: "Honey Badgers is a New Zealand owned brand. We work directly with beekeepers we know and trust, pulling honey from some of the most remote land in the country. Every batch is tested before it leaves us. What you get is honey we would happily put on our own table. No middlemen, no shortcuts.",
+    body: "Honey Badgers is a New Zealand owned brand. We work directly with beekeepers we know and trust, pulling honey from some of the most remote land in the country. Every batch is tested before it leaves us. What you get is honey we would happily put on our own table. Clean, natural Mānuka, an easy part of your everyday wellbeing.",
     stats: [
       { value: '100%', label: 'NEW ZEALAND SOURCED' },
       { value: '829+', label: 'PEAK CERTIFIED MGO' },
@@ -55,7 +55,7 @@ export const site = {
     products: [
       {
         num: '100+', name: 'EVERYDAY STRENGTH', img: '/assets/jar-100.png', level: 16, tag: 'EVERYDAY', peak: false,
-        desc: 'A solid start. Smooth, mild and easy to work into your day.',
+        desc: 'A solid start. Smooth, mild and easy to make part of your daily wellbeing.',
       },
       {
         num: '263+', name: 'STRONGER', img: '/assets/jar-263.png', level: 38, tag: 'MID GRADE', peak: false,
@@ -118,7 +118,7 @@ export const site = {
   quality: {
     eyebrow: 'TESTED AND TRACEABLE',
     heading: 'EVERY BATCH IS TESTED<br>BEFORE IT SHIPS.',
-    body: 'Before anything leaves us, it is independently tested for purity, authenticity and MGO strength. Every jar traces back to the batch and the hive it came from. We do not ship anything we would not eat ourselves.',
+    body: 'Before anything leaves us, it is independently tested for purity, authenticity and MGO strength. Every jar traces back to the batch and the hive it came from. We do not ship anything we would not eat ourselves. Pure Mānuka honey, naturally rich and exactly the way nature made it.',
     steps: [
       { n: '01', title: 'HIVE', desc: 'Remote NZ apiaries' },
       { n: '02', title: 'HARVEST', desc: 'Single origin batches' },
