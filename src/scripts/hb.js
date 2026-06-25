@@ -305,3 +305,23 @@ function applyMq() {
 }
 mq.addEventListener('change', applyMq);
 applyMq();
+
+// ---- certification badges: swap the text emblem for a real logo if one exists ----
+// Drop official logos at /assets/certs/<mark>.png (mgo/haccp/rmp/nz). If a file
+// is missing the styled text emblem stays — no broken image, no console error.
+$$('.hb-cert-logo').forEach((img) => {
+  const mark = img.parentElement ? img.parentElement.querySelector('.hb-cert-mark') : null;
+  const reveal = () => {
+    img.style.display = 'block';
+    if (mark) mark.style.display = 'none';
+  };
+  if (img.complete && img.naturalWidth > 0) reveal();
+  else {
+    img.addEventListener('load', () => {
+      if (img.naturalWidth > 0) reveal();
+    });
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+    });
+  }
+});
