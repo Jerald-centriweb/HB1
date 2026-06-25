@@ -93,7 +93,7 @@ const btnStyle = {
               </div>
               <!-- Small MGO seal trust mark -->
               <div style="display:flex;align-items:center;gap:12px;margin-top:28px;">
-                <img src="/assets/mgo-seal.jpg" alt="MGO Certified" style="width:80px;height:80px;border-radius:50%;object-fit:cover;mix-blend-mode:lighten;filter:drop-shadow(0 4px 14px rgba(243,205,107,.45));flex-shrink:0;">
+                <img src="/assets/mgo-seal.png" alt="MGO Certified" style="height:86px;width:auto;filter:drop-shadow(0 6px 16px rgba(243,205,107,.4));flex-shrink:0;">
                 <div>
                   <div style="font-size:10px;letter-spacing:2.5px;color:#a8842f;font-weight:700;">MGO CERTIFIED</div>
                   <div style="font-size:12px;color:#9c8f76;margin-top:2px;line-height:1.45;">Independently verified strength.<br>Every batch before it ships.</div>
@@ -272,7 +272,7 @@ const btnStyle = {
       <div style="position:relative;max-width:1100px;margin:0 auto;text-align:center;">
         <!-- Large centered MGO seal -->
         <div data-reveal style="display:flex;justify-content:center;margin-bottom:28px;">
-          <img src="/assets/mgo-seal.jpg" alt="MGO Certified" style="width:clamp(110px,15vw,160px);height:clamp(110px,15vw,160px);border-radius:50%;mix-blend-mode:lighten;filter:drop-shadow(0 0 28px rgba(243,205,107,.55)) drop-shadow(0 12px 24px rgba(0,0,0,.6));object-fit:cover;">
+          <img src="/assets/mgo-seal.png" alt="MGO Certified" style="height:clamp(128px,17vw,168px);width:auto;filter:drop-shadow(0 0 30px rgba(243,205,107,.4)) drop-shadow(0 14px 26px rgba(0,0,0,.5));">
         </div>
         <div data-reveal style="font-size:12px;letter-spacing:5px;color:#a8842f;font-weight:700;margin-bottom:18px;">{site.quality.eyebrow}</div>
         <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(28px,4vw,56px);line-height:1.04;margin:0;letter-spacing:-.5px;" set:html={site.quality.heading}></h2>
@@ -295,7 +295,7 @@ const btnStyle = {
       <div data-reveal class="hb-certs" style="max-width:1080px;margin:clamp(46px,5vw,64px) auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
         {site.quality.certs.map((c) => (
           <div class="hb-cert" style="background:linear-gradient(180deg,#141009,#0c0905);border:1px solid rgba(216,172,78,.18);border-radius:8px;padding:30px 22px;text-align:center;transition:transform .35s,border-color .35s,box-shadow .35s;">
-            <div class="hb-cert-emblem" style="position:relative;width:72px;height:72px;margin:0 auto 16px;">
+            <div class="hb-cert-emblem" style="position:relative;width:90px;height:90px;margin:0 auto 14px;">
               <img class="hb-cert-logo" src={`/assets/certs/${c.mark.toLowerCase()}.png`} alt={c.title} style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));">
               <div class="hb-cert-mark" style="width:100%;height:100%;border-radius:50%;border:1.5px solid rgba(243,205,107,.5);background:radial-gradient(circle at 50% 32%,rgba(243,205,107,.16),#0d0a06);box-shadow:inset 0 0 14px rgba(243,205,107,.12),0 8px 20px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;font-family:'Archivo Black';font-size:17px;"><span style="background:linear-gradient(180deg,#f9e29a,#d99f2c);-webkit-background-clip:text;background-clip:text;color:transparent;">{c.mark}</span></div>
             </div>
