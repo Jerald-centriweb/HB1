@@ -48,15 +48,21 @@ const btnStyle = {
     <!-- ===== HERO + STORY (cohesive sticky scroll scene) ===== -->
     <section id="top" class="hb-scene" style="position:relative;overflow:hidden;padding:0 clamp(18px,4vw,56px);">
       <!-- Nature landscape background image — revealed on load, hidden on error -->
-      <img
-        id="hb-hero-nature"
-        src="/assets/nature/hero.jpg"
-        aria-hidden="true"
-        alt=""
-        style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55;z-index:1;pointer-events:none;"
-      >
-      <!-- Gradient overlay on top of nature image so text stays fully legible -->
-      <div id="hb-hero-nature-overlay" style="display:none;position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(8,6,3,.92) 0%,rgba(8,6,3,.60) 55%,rgba(8,6,3,.30) 100%),linear-gradient(0deg,rgba(8,6,3,.82) 0%,transparent 40%);"></div>
+      <!-- picture: portrait crop on mobile (≤900px), wide landscape on desktop -->
+      <picture>
+        <source media="(max-width:900px)" srcset="/assets/nature/hero-mobile.jpg">
+        <img
+          id="hb-hero-nature"
+          src="/assets/nature/hero.jpg"
+          aria-hidden="true"
+          alt=""
+          style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;z-index:1;pointer-events:none;"
+        >
+      </picture>
+      <!-- Gradient overlay on top of nature image so text stays fully legible.
+           Left ~55% and bottom stay dark so headline + jar remain perfectly readable;
+           right side opens up to show the golden landscape. -->
+      <div id="hb-hero-nature-overlay" style="display:none;position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(8,6,3,.94) 0%,rgba(8,6,3,.70) 38%,rgba(8,6,3,.28) 55%,transparent 78%),linear-gradient(0deg,rgba(8,6,3,.85) 0%,rgba(8,6,3,.40) 20%,transparent 42%);"></div>
       <!-- Hero honey backdrop: subtle muted loop (no scroll-scrubbing). The
            preview toggle (bottom-right) shows/hides it; the choice persists. -->
       <video
@@ -110,6 +116,14 @@ const btnStyle = {
               {site.story.stats.map((s) => (
                 <div style="background:#0d0a06;padding:30px 16px;"><div style="font-family:'Archivo Black';font-size:clamp(28px,3.4vw,44px);background:linear-gradient(180deg,#f6d680,#c8922f);-webkit-background-clip:text;background-clip:text;color:transparent;">{s.value}</div><div style="font-size:11.5px;letter-spacing:1.5px;color:#9c8f76;margin-top:8px;">{s.label}</div></div>
               ))}
+            </div>
+            <!-- Mānuka blossom editorial image -->
+            <div data-reveal style="margin-top:40px;max-width:560px;">
+              <img
+                src="/assets/nature/manuka.jpg"
+                alt="Mānuka blossoms with a bee — the source of Honey Badgers Mānuka honey"
+                style="display:block;width:100%;max-width:100%;height:auto;border-radius:12px;border:1px solid rgba(216,172,78,.25);box-shadow:0 20px 50px -12px rgba(0,0,0,.65),0 0 0 1px rgba(216,172,78,.08);object-fit:cover;"
+              >
             </div>
           </div>
         </div>
@@ -277,6 +291,14 @@ const btnStyle = {
         <div data-reveal style="font-size:12px;letter-spacing:5px;color:#a8842f;font-weight:700;margin-bottom:18px;">{site.quality.eyebrow}</div>
         <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(28px,4vw,56px);line-height:1.04;margin:0;letter-spacing:-.5px;" set:html={site.quality.heading}></h2>
         <p data-reveal style="font-size:clamp(15px,1.3vw,18px);color:#b6a98f;max-width:660px;margin:24px auto 0;line-height:1.7;">{site.quality.body}</p>
+        <!-- Premium product editorial image -->
+        <div data-reveal style="margin:46px auto 0;max-width:680px;">
+          <img
+            src="/assets/nature/quality.jpg"
+            alt="Honey Badgers Mānuka honey jar with raw honeycomb on dark marble"
+            style="display:block;width:100%;max-width:100%;height:auto;border-radius:12px;border:1px solid rgba(216,172,78,.25);box-shadow:0 24px 60px -14px rgba(0,0,0,.70),0 0 0 1px rgba(216,172,78,.08);object-fit:cover;"
+          >
+        </div>
       </div>
 
       <!-- traceability stepper -->
