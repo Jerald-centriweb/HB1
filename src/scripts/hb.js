@@ -311,9 +311,12 @@ applyMq();
 // is missing the styled text emblem stays — no broken image, no console error.
 $$('.hb-cert-logo').forEach((img) => {
   const mark = img.parentElement ? img.parentElement.querySelector('.hb-cert-mark') : null;
-  // Real badge shows by default; fall back to the styled text emblem only on error.
-  img.addEventListener('error', () => {
+  const fail = () => {
     img.style.display = 'none';
     if (mark) mark.style.display = 'flex';
-  });
+  };
+  // Real badge shows by default; fall back to the text emblem if it fails to load.
+  // Handle the case where the error already fired before this script ran.
+  if (img.complete && img.naturalWidth === 0) fail();
+  else img.addEventListener('error', fail);
 });
