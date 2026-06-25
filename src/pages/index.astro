@@ -47,16 +47,6 @@ const btnStyle = {
 
     <!-- ===== HERO + STORY (cohesive sticky scroll scene) ===== -->
     <section id="top" class="hb-scene" style="position:relative;overflow:hidden;padding:0 clamp(18px,4vw,56px);">
-      <!-- Nature landscape background image — revealed on load, hidden on error -->
-      <img
-        id="hb-hero-nature"
-        src="/assets/nature/hero.jpg"
-        aria-hidden="true"
-        alt=""
-        style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55;z-index:1;pointer-events:none;"
-      >
-      <!-- Gradient overlay on top of nature image so text stays fully legible -->
-      <div id="hb-hero-nature-overlay" style="display:none;position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(8,6,3,.92) 0%,rgba(8,6,3,.60) 55%,rgba(8,6,3,.30) 100%),linear-gradient(0deg,rgba(8,6,3,.82) 0%,transparent 40%);"></div>
       <!-- Hero honey backdrop: subtle muted loop (no scroll-scrubbing). The
            preview toggle (bottom-right) shows/hides it; the choice persists. -->
       <video
@@ -93,7 +83,7 @@ const btnStyle = {
               </div>
               <!-- Small MGO seal trust mark -->
               <div style="display:flex;align-items:center;gap:12px;margin-top:28px;">
-                <img src="/assets/mgo-seal.png" alt="MGO Certified" style="height:86px;width:auto;filter:drop-shadow(0 6px 16px rgba(243,205,107,.4));flex-shrink:0;">
+                <img src="/assets/mgo-seal.png?v=2" alt="MGO Certified" style="height:86px;width:auto;filter:drop-shadow(0 6px 16px rgba(243,205,107,.4));flex-shrink:0;">
                 <div>
                   <div style="font-size:10px;letter-spacing:2.5px;color:#a8842f;font-weight:700;">MGO CERTIFIED</div>
                   <div style="font-size:12px;color:#9c8f76;margin-top:2px;line-height:1.45;">Independently verified strength.<br>Every batch before it ships.</div>
@@ -268,11 +258,25 @@ const btnStyle = {
 
     <!-- ===== QUALITY ===== -->
     <section id="quality" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);background:linear-gradient(180deg,#100c07,#0b0907);border-top:1px solid rgba(216,172,78,.12);overflow:hidden;">
-      <div data-parallax="0.3" data-glow="1" style="position:absolute;left:-10%;top:-6%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.10),transparent 60%);"></div>
-      <div style="position:relative;max-width:1100px;margin:0 auto;text-align:center;">
+      <!-- Subtle honey backdrop. Toggled with the hero via the BACKDROP control;
+           off by default on mobile. Heavily darkened so the seal/text stay crisp. -->
+      <video
+        id="hb-quality-video"
+        muted
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+        style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.20;z-index:0;pointer-events:none;"
+      >
+        <source src="/assets/video/quality.mp4" type="video/mp4">
+      </video>
+      <!-- Darkening veil over the video: keeps the centred seal + copy legible. -->
+      <div id="hb-quality-veil" aria-hidden="true" style="display:none;position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 78% at 50% 30%,rgba(11,9,7,.42),rgba(11,9,7,.84) 68%),linear-gradient(180deg,rgba(11,9,7,.55),rgba(11,9,7,.90));"></div>
+      <div data-parallax="0.3" data-glow="1" style="position:absolute;left:-10%;top:-6%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.10),transparent 60%);z-index:1;"></div>
+      <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;text-align:center;">
         <!-- Large centered MGO seal -->
         <div data-reveal style="display:flex;justify-content:center;margin-bottom:28px;">
-          <img src="/assets/mgo-seal.png" alt="MGO Certified" style="height:clamp(128px,17vw,168px);width:auto;filter:drop-shadow(0 0 30px rgba(243,205,107,.4)) drop-shadow(0 14px 26px rgba(0,0,0,.5));">
+          <img src="/assets/mgo-seal.png?v=2" alt="MGO Certified" style="height:clamp(128px,17vw,168px);width:auto;filter:drop-shadow(0 0 30px rgba(243,205,107,.4)) drop-shadow(0 14px 26px rgba(0,0,0,.5));">
         </div>
         <div data-reveal style="font-size:12px;letter-spacing:5px;color:#a8842f;font-weight:700;margin-bottom:18px;">{site.quality.eyebrow}</div>
         <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(28px,4vw,56px);line-height:1.04;margin:0;letter-spacing:-.5px;" set:html={site.quality.heading}></h2>
@@ -280,7 +284,7 @@ const btnStyle = {
       </div>
 
       <!-- traceability stepper -->
-      <div data-reveal class="hb-trace" style="position:relative;max-width:1080px;margin:clamp(50px,6vw,76px) auto 0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;">
+      <div data-reveal class="hb-trace" style="position:relative;z-index:2;max-width:1080px;margin:clamp(50px,6vw,76px) auto 0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;">
         <div style="position:absolute;top:19px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(216,172,78,.45),transparent);"></div>
         {site.quality.steps.map((step) => (
           <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 8px;">
@@ -292,7 +296,7 @@ const btnStyle = {
       </div>
 
       <!-- certification tiles -->
-      <div data-reveal class="hb-certs" style="max-width:1080px;margin:clamp(46px,5vw,64px) auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div data-reveal class="hb-certs" style="position:relative;z-index:2;max-width:1080px;margin:clamp(46px,5vw,64px) auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
         {site.quality.certs.map((c) => (
           <div class="hb-cert" style="background:linear-gradient(180deg,#141009,#0c0905);border:1px solid rgba(216,172,78,.18);border-radius:8px;padding:30px 22px;text-align:center;transition:transform .35s,border-color .35s,box-shadow .35s;">
             <div class="hb-cert-emblem" style="position:relative;width:90px;height:90px;margin:0 auto 14px;">
@@ -412,24 +416,5 @@ const btnStyle = {
   <script>
     import '../scripts/hb.js';
     import '../scripts/motion.js';
-  </script>
-  <script>
-    // Hero nature background image: reveal on load, silent on error.
-    (function () {
-      const img = document.getElementById('hb-hero-nature');
-      const overlay = document.getElementById('hb-hero-nature-overlay');
-      if (!img) return;
-      function revealNature() {
-        img.style.display = '';
-        if (overlay) overlay.style.display = '';
-      }
-      img.addEventListener('load', revealNature, { once: true });
-      img.addEventListener('error', function () {
-        img.style.display = 'none';
-        if (overlay) overlay.style.display = 'none';
-      }, { once: true });
-      // If already cached and loaded before this script runs
-      if (img.complete && img.naturalWidth > 0) revealNature();
-    })();
   </script>
 </Base>

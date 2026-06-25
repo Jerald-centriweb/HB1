@@ -316,6 +316,13 @@ if (heroVideo) {
   });
 }
 
+// Quality-section ambient backdrop (subtle honey loop, darkened by a veil).
+// Shares the BACKDROP toggle with the hero video.
+const qualityVideo = document.getElementById('hb-quality-video');
+if (qualityVideo) {
+  initVideoScrub(qualityVideo, {});
+}
+
 // Transition video removed: the mid-page band was intrusive and its scrub was
 // the source of the patchy feel. Its markup is gone from index.astro and the
 // transition.mp4 file is no longer shipped.
@@ -331,17 +338,26 @@ const bgDot = document.getElementById('hb-bg-toggle-dot');
 // Default the honey backdrop OFF on mobile (save data/battery); desktop on.
 // An explicit toggle choice (localStorage) always wins.
 const _bgDefault = window.innerWidth <= 900 ? 'off' : 'on';
+const qualityVid = document.getElementById('hb-quality-video');
+const qualityVeil = document.getElementById('hb-quality-veil');
 let bgVideoOn = (localStorage.getItem('hb-bg-video') || _bgDefault) !== 'off';
+function setBackdropVideo(vid, on) {
+  if (!vid || !vid._hbReady) return;
+  if (on && !reduce) {
+    vid.style.display = '';
+    const p = vid.play();
+    if (p && p.catch) p.catch(() => {});
+  } else {
+    vid.pause();
+    vid.style.display = 'none';
+  }
+}
 function applyBg() {
-  if (heroVid && heroVid._hbReady) {
-    if (bgVideoOn && !reduce) {
-      heroVid.style.display = '';
-      const p = heroVid.play();
-      if (p && p.catch) p.catch(() => {});
-    } else {
-      heroVid.pause();
-      heroVid.style.display = 'none';
-    }
+  setBackdropVideo(heroVid, bgVideoOn);
+  setBackdropVideo(qualityVid, bgVideoOn);
+  // The Quality veil only matters when its video is visible.
+  if (qualityVeil) {
+    qualityVeil.style.display = (bgVideoOn && !reduce && qualityVid && qualityVid._hbReady) ? '' : 'none';
   }
   if (bgLabel) bgLabel.textContent = 'BACKDROP: ' + (bgVideoOn ? 'ON' : 'OFF');
   if (bgDot) {
