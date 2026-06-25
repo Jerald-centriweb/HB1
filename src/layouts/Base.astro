@@ -8,9 +8,9 @@ const {
   description = 'Premium New Zealand Mānuka honey for the world — independently verified, fully traceable, and bold by nature. Certified MGO 100+ to 829+. Wholesale & export.',
 } = Astro.props;
 
-// TODO(launch): set this to the live origin (e.g. https://honeybadgers.co or the
-// centriweb.info preview subdomain) so canonical + social share URLs resolve.
-const SITE_URL = 'https://honeybadgers.co';
+// Origin used for canonical + social-share URLs. Currently the live preview
+// subdomain; TODO(launch): switch to the final brand domain when DNS is ready.
+const SITE_URL = 'https://hb.centriweb.info';
 const ogImage = SITE_URL + '/assets/og-image.jpg';
 const canonical = SITE_URL + '/';
 
