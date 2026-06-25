@@ -85,6 +85,8 @@ gsap.matchMedia().add(
     if (scene) {
       const bgLayers = scene.querySelectorAll('[data-parallax]');
       bgLayers.forEach((layer) => {
+        // GSAP owns this element's transform now — hb.js's rAF parallax skips it.
+        layer.dataset.gsapParallax = '1';
         const speed = parseFloat(layer.getAttribute('data-parallax')) || 0.3;
         gsap.to(layer, {
           yPercent: speed * -18,
@@ -191,6 +193,7 @@ gsap.matchMedia().add(
     if (qualitySection) {
       const ambientGlow = qualitySection.querySelector('[data-parallax]');
       if (ambientGlow) {
+        ambientGlow.dataset.gsapParallax = '1';
         gsap.to(ambientGlow, {
           y: -60,
           ease: 'none',

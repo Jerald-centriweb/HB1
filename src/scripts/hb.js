@@ -133,6 +133,7 @@ function onScroll() {
     }
   }
   $$('[data-parallax]').forEach((el) => {
+    if (el.dataset.gsapParallax) return; // GSAP (motion.js) drives this one on desktop
     const r = el.getBoundingClientRect();
     const speed = parseFloat(el.getAttribute('data-parallax')) || 0.3;
     const off = (r.top + r.height / 2 - window.innerHeight / 2) * speed * -0.15 * motionMul;
