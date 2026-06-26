@@ -103,11 +103,11 @@ const orgSchema = {
 
       /* Full-bleed nature backgrounds: slow drift + blur-up fade-in. */
       @keyframes hb-kenburns {
-        from { transform: scale(1.02); }
-        to   { transform: scale(1.09); }
+        from { transform: scale(1.0); }
+        to   { transform: scale(1.045); }
       }
       .hb-kb {
-        animation: hb-kenburns 28s ease-in-out infinite alternate;
+        animation: hb-kenburns 32s ease-in-out infinite alternate;
         transform-origin: center center;
       }
       .hb-natbg-img.is-loaded { opacity: 1 !important; }

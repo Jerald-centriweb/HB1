@@ -2,230 +2,129 @@
 /**
  * NZMap.astro — Recognisable outline map of New Zealand (North + South + Stewart Islands)
  *
- * Path source: Derived from the Wikimedia Commons "New Zealand Simplified.svg"
- * (CC0 public domain, https://commons.wikimedia.org/wiki/File:New_Zealand_Simplified.svg)
- * Original viewBox 0 0 1310.949 1615.5, scaled and simplified to viewBox "0 0 520 640"
- * using known geographic key-points (geographic coordinates mapped to SVG space):
- *   - Longitude 166°E→178°E maps to x 10→510
- *   - Latitude  34°S→47.5°S maps to y 10→630
- *
- * North Island: roughly triangular, widest at lower third, tapers north to Auckland
- *   peninsula and terminates at Cape Reinga in the NW / East Cape in the E
- * South Island: larger, elongated SW-NE, dominated by the Southern Alps spine
- * Stewart Island: small teardrop south of Foveaux Strait
+ * Path source: Coordinates derived from the johan/world.geo.json dataset
+ * (https://github.com/johan/world.geo.json/blob/master/countries/NZL.geo.json)
+ * which is itself simplified from Natural Earth public domain data.
+ * Converted to SVG space: viewBox "0 0 220 480"
+ *   x = (lon - 166) × 16.08 + 5
+ *   y = (|lat| - 34) × 34.81 + 5
+ * All conversion math independently verified against key geographic anchors:
+ *   East Cape 178.5°E → x≈206 (near right edge ✓)
+ *   Fiordland 166.7°E → x≈16 (near left edge ✓)
+ *   Cape Reinga 34.5°S → y≈23 (near top ✓)
+ *   Bluff 46.6°S → y≈444 (near bottom ✓)
  */
 
 interface Props {
-  /** Array of apiary region markers to render on the map */
+  /** Array of apiary region markers rendered on the map */
   regions?: Array<{ label: string; x: number; y: number }>;
   class?: string;
 }
 
 const {
   regions = [
-    { label: 'East Cape',       x: 390, y: 193 },
-    { label: 'Coromandel',      x: 330, y: 215 },
-    { label: 'Central Plateau', x: 295, y: 255 },
-    { label: 'West Coast',      x: 175, y: 450 },
-    { label: 'Southland',       x: 210, y: 565 },
+    { label: 'East Cape',       x: 200, y: 136 },
+    { label: 'Coromandel',      x: 163, y: 106 },
+    { label: 'Central Plateau', x: 150, y: 195 },
+    { label: 'West Coast',      x:  75, y: 301 },
+    { label: 'Southland',       x:  72, y: 410 },
   ],
   class: className,
 } = Astro.props;
 ---
 
-<!--
-  NZ outline map – inline SVG
-  viewBox: 0 0 520 640
-  Paths derived from Wikimedia Commons CC0 simplified NZ outline.
--->
 <svg
-  viewBox="0 0 520 640"
+  viewBox="0 0 220 480"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
   aria-labelledby="nzmap-title"
   class:list={['nz-map', className]}
-  style="width:100%;max-width:520px;height:auto;display:block;"
+  style="width:100%;max-width:280px;height:auto;display:block;"
 >
   <title id="nzmap-title">New Zealand</title>
   <defs>
-    <!-- Soft glow filter for dot halos -->
-    <filter id="nzmap-glow" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
-    </filter>
-    <!-- Gold radial gradient for dot halo -->
     <radialGradient id="nzmap-dot-halo" cx="50%" cy="50%" r="50%">
       <stop offset="0%"   stop-color="#d8ac4e" stop-opacity="0.55" />
       <stop offset="100%" stop-color="#d8ac4e" stop-opacity="0" />
     </radialGradient>
   </defs>
 
-  {/* ── NORTH ISLAND ─────────────────────────────────────────────── */}
-  {/*
-      Key geographic points mapped to viewBox 0 0 520 640
-      Lon 166°E=10, 178°E=510  (scale: ~41.67 px/degree)
-      Lat  34°S=10,  47.5°S=630 (scale: ~46.67 px/degree, S increases downward)
-
-      Cape Reinga       172.7°E, 34.4°S  → (278, 29)
-      Ninety Mile Beach coast going SW    → curves to (238, 55)
-      Hokianga Harbour  173.4°E, 35.6°S  → (307, 85)
-      Auckland Isthmus  174.7°E, 36.9°S  → (362, 146)
-      Coromandel tip    175.7°E, 36.4°S  → (403, 123)
-      East Cape         178.6°E, 37.7°S  → (510, 175)  ← easternmost
-      Hawke's Bay       177.0°E, 39.5°S  → (427, 259)
-      Cape Palliser      175.3°E, 41.6°S → (348, 357)   ← SE tip North Is.
-      Farewell Spit     172.7°E, 40.5°S  → (278, 309)   ← NW top South Is.
-      Wellington        174.8°E, 41.3°S  → (367, 342)
-      Taranaki coast    174.2°E, 39.1°S  → (338, 240)
-      Whanganui coast   175.0°E, 39.9°S  → (374, 277)
-  */}
+  <!--
+    NORTH ISLAND — 36 anchor points from real GeoJSON (Natural Earth / world.geo.json)
+    Traces clockwise: upper Northland → Coromandel → East Cape → Hawke Bay →
+    Cape Palliser (SE tip) → Wellington → W coast → Taranaki → Auckland → Cape Reinga
+  -->
   <path
     aria-hidden="true"
-    fill="rgba(216,172,78,0.06)"
+    fill="rgba(216,172,78,0.07)"
     stroke="#d8ac4e"
     stroke-width="1.5"
     stroke-linejoin="round"
     stroke-linecap="round"
     d="
-      M278,29
-      C260,35 245,48 238,58
-      C228,72 230,82 242,92
-      C252,100 263,106 270,118
-      C276,128 272,140 270,150
-      C267,162 260,170 258,182
-      C255,196 260,208 268,218
-      C274,226 282,228 290,232
-      C298,237 305,244 308,255
-      C312,268 310,280 306,292
-      C300,308 290,318 282,330
-      C272,344 268,356 270,365
-      C272,374 278,380 285,384
-      C294,388 303,384 310,378
-      C316,372 318,362 322,352
-      C328,338 336,326 342,316
-      C349,304 354,292 356,278
-      C358,264 356,250 352,238
-      C347,224 344,212 346,200
-      C348,188 356,178 365,172
-      C374,166 384,164 394,162
-      C406,160 416,160 424,154
-      C434,148 440,138 444,126
-      C448,114 446,102 440,92
-      C434,82 424,74 416,66
-      C406,56 396,48 390,38
-      C382,26 378,16 370,12
-      C360,6 348,8 338,12
-      C326,16 314,22 302,26
-      C294,29 285,29 278,29
-      Z
+      M143.5,80.1 L155.1,116.7 L155.5,92.9 L162.7,102.4 L165.1,128.8
+      L178.1,140.1 L188.9,142.9 L198.1,129.6 L206.3,133.6 L202.4,164.5
+      L197.5,184.8 L185.2,184.1 L180.9,194.7 L182.4,209.7 L180.0,216.2
+      L174.0,234.9 L166.0,258.8 L153.6,272.6 L150.8,263.5 L144.1,258.5
+      L153.4,229.8 L148.1,210.7 L130.8,196.8 L131.3,184.2 L142.9,172.0
+      L145.6,145.2 L144.8,122.7 L138.3,99.4 L138.8,93.2 L131.1,78.9
+      L118.4,48.1 L111.7,23.4 L117.7,20.7 L126.4,40.0 L138.9,49.1
+      L143.5,80.1 Z
     "
   />
 
-  {/* ── SOUTH ISLAND ─────────────────────────────────────────────── */}
-  {/*
-      Farewell Spit (NW)    172.7°E, 40.5°S → (278, 309)
-      Nelson/Golden Bay     173.1°E, 41.0°S → (296, 333)
-      Marlborough Sounds    174.3°E, 41.5°S → (348, 356)  ← matches Cook Strait S shore
-      Kaikōura              173.7°E, 42.4°S → (322, 398)
-      Banks Peninsula       172.7°E, 43.8°S → (278, 465)
-      Timaru coast          171.2°E, 44.4°S → (215, 493)
-      Dunedin               170.5°E, 45.9°S → (183, 563)
-      Bluff / Foveaux       168.3°E, 46.6°S → (92,  595)
-      Fiordland coast       167.3°E, 45.5°S → (51,  549)
-      Jackson Bay           168.6°E, 43.9°S → (107, 469)
-      Hokitika              170.9°E, 42.7°S → (203, 412)
-      Westport              171.6°E, 41.7°S → (233, 364)
-      Cape Farewell sea gap (small gap between islands)
-  */}
+  <!--
+    SOUTH ISLAND — 30 anchor points from same dataset
+    Traces clockwise: Nelson/Farewell top → Marlborough → Canterbury →
+    Timaru → Dunedin → Bluff (S tip) → Fiordland (W coast) → Westport →
+    back to Nelson
+  -->
   <path
     aria-hidden="true"
-    fill="rgba(216,172,78,0.06)"
+    fill="rgba(216,172,78,0.07)"
     stroke="#d8ac4e"
     stroke-width="1.5"
     stroke-linejoin="round"
     stroke-linecap="round"
     d="
-      M278,318
-      C285,318 294,322 302,328
-      C312,336 320,346 330,354
-      C342,362 354,366 362,374
-      C370,382 374,394 374,406
-      C374,420 370,432 364,444
-      C356,458 346,468 336,478
-      C324,490 312,500 302,512
-      C292,524 284,538 278,552
-      C272,566 270,580 268,592
-      C264,604 258,614 250,620
-      C240,626 228,626 218,622
-      C206,616 196,606 188,594
-      C178,580 170,564 162,550
-      C152,534 142,520 132,508
-      C120,494 108,482 98,468
-      C86,452 76,434 66,418
-      C56,400 48,382 46,364
-      C44,346 48,328 56,314
-      C64,300 76,290 88,282
-      C100,274 114,270 126,268
-      C140,266 154,268 166,272
-      C178,276 188,282 198,290
-      C210,298 220,308 230,316
-      C244,324 258,326 270,322
-      C274,320 276,318 278,318
-      Z
+      M117.9,245.9 L121.5,260.2 L133.0,246.1 L137.6,260.8 L137.6,275.5
+      L131.7,291.6 L121.1,317.2 L112.9,331.2 L118.8,348.0 L106.4,348.4
+      L92.7,361.5 L88.4,384.3 L79.2,419.5 L66.6,435.1 L58.6,445.0
+      L43.8,444.3 L33.4,432.8 L15.9,430.4 L13.2,417.6 L21.8,391.8
+      L42.0,357.4 L52.4,350.9 L64.0,337.6 L77.8,319.4 L87.4,301.3
+      L94.6,275.4 L100.7,266.6 L103.0,247.1 L114.3,231.1 L117.9,245.9 Z
     "
   />
 
-  {/* ── STEWART ISLAND ───────────────────────────────────────────── */}
-  {/*
-      Stewart Island lies south of Foveaux Strait (~47°S, 168°E)
-      Foveaux Strait gap at ~46.6°S → y≈595
-      Stewart Island: roughly 46.8°S to 47.3°S, 167.5°E to 168.5°E
-      Centre ≈ (85, 615), small teardrop shape
-  */}
-  <path
+  <!--
+    STEWART ISLAND — small island south of Foveaux Strait (~168.1°E, 47.0°S)
+    x = (168.1 - 166) × 16.08 + 5 ≈ 38.8,  y = (47.0 - 34) × 34.81 + 5 ≈ 457.5
+  -->
+  <ellipse
     aria-hidden="true"
-    fill="rgba(216,172,78,0.06)"
+    cx="39"
+    cy="458"
+    rx="11"
+    ry="8"
+    fill="rgba(216,172,78,0.07)"
     stroke="#d8ac4e"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-    stroke-linecap="round"
-    d="
-      M75,606
-      C80,601 90,598 98,600
-      C108,603 115,610 114,618
-      C113,626 106,632 98,634
-      C88,636 78,632 73,624
-      C68,616 70,609 75,606
-      Z
-    "
+    stroke-width="1.4"
   />
 
-  {/* ── REGION MARKERS ───────────────────────────────────────────── */}
+  <!-- REGION MARKERS — pulsing gold dots with uppercase labels -->
   {regions.map(({ label, x, y }) => (
     <g class="nzmap-region" aria-label={label}>
-      {/* Halo glow circle */}
-      <circle
-        cx={x}
-        cy={y}
-        r="10"
-        fill="url(#nzmap-dot-halo)"
-        aria-hidden="true"
-      />
-      {/* Pulsing dot */}
-      <circle
-        cx={x}
-        cy={y}
-        r="4"
-        fill="#d8ac4e"
-        class="nzmap-dot"
-        aria-hidden="true"
-      />
-      {/* Label */}
+      <!-- Halo glow -->
+      <circle cx={x} cy={y} r="9" fill="url(#nzmap-dot-halo)" aria-hidden="true" />
+      <!-- Dot -->
+      <circle cx={x} cy={y} r="3.5" fill="#d8ac4e" class="nzmap-dot" aria-hidden="true" />
+      <!-- Label -->
       <text
         x={x}
-        y={y - 12}
+        y={y - 10}
         text-anchor="middle"
         font-family="sans-serif"
-        font-size="7.5"
+        font-size="6.5"
         fill="#cdbfa3"
         letter-spacing="0.08em"
         font-weight="500"
@@ -239,14 +138,12 @@ const {
 </svg>
 
 <style>
-  .nz-map {
-    overflow: visible;
-  }
+  .nz-map { overflow: visible; }
 
   @keyframes nzmap-pulse {
-    0%   { r: 4; opacity: 1; }
-    60%  { r: 6; opacity: 0.6; }
-    100% { r: 4; opacity: 1; }
+    0%   { r: 3.5; opacity: 1; }
+    60%  { r: 5.5; opacity: 0.5; }
+    100% { r: 3.5; opacity: 1; }
   }
 
   .nzmap-dot {
@@ -255,7 +152,6 @@ const {
     transform-origin: center;
   }
 
-  /* Stagger dot animations per sibling index */
   .nzmap-region:nth-child(1) .nzmap-dot { animation-delay: 0s; }
   .nzmap-region:nth-child(2) .nzmap-dot { animation-delay: 0.56s; }
   .nzmap-region:nth-child(3) .nzmap-dot { animation-delay: 1.12s; }

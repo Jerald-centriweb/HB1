@@ -262,9 +262,9 @@ gsap.matchMedia().add(
       if (!sec) return;
       gsap.fromTo(
         inner,
-        { yPercent: -7 },
+        { yPercent: -5 },
         {
-          yPercent: 7,
+          yPercent: 5,
           ease: 'none',
           scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true },
         }

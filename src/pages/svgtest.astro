@@ -1,0 +1,34 @@
+---
+import NZMap from '../components/NZMap.astro';
+import SilverFern from '../components/SilverFern.astro';
+import Koru from '../components/Koru.astro';
+---
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SVG Component Test</title>
+  <style>
+    body { background: #0b0907; margin: 0; padding: 40px; font-family: sans-serif; }
+    h2 { color: #9c8f76; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 16px; }
+    .row { display: flex; gap: 60px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 60px; }
+    .cell { display: flex; flex-direction: column; gap: 12px; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell">
+      <h2>NZ Map</h2>
+      <NZMap />
+    </div>
+    <div class="cell">
+      <h2>Silver Fern</h2>
+      <SilverFern size={120} />
+    </div>
+    <div class="cell">
+      <h2>Koru</h2>
+      <Koru size={100} />
+    </div>
+  </div>
+</body>
+</html>
