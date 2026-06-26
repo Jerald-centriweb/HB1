@@ -1,0 +1,108 @@
+---
+/**
+ * Koru.astro — Māori koru (unfurling spiral) as inline SVG
+ *
+ * The koru is a deeply significant Māori symbol representing new life, growth,
+ * strength, and peace. It is inspired by the shape of a new silver fern frond
+ * as it unfurls. This SVG renders a graceful, dignified single spiral that
+ * bulbs at the centre and tapers as it unrolls outward and upward.
+ *
+ * Construction:
+ *   - Centre circle: tight closed loop (the bulb), radius ~12 at centre (50,58)
+ *   - Spiral path: leaves the bulb, sweeps outward counter-clockwise in a
+ *     smooth arc, then the stalk rises and curves gently to one side —
+ *     the classic koru silhouette as seen in Māori tā moko and tukutuku art.
+ *   - Single open path, stroke only, round caps/joins for softness.
+ *   - No fill — respects the symbol's graphic tradition of being defined by line.
+ *
+ * viewBox: 0 0 100 100
+ */
+
+interface Props {
+  /** Width (and height) in pixels */
+  size?: number;
+  /** Overall opacity */
+  opacity?: number;
+  class?: string;
+}
+
+const {
+  size = 80,
+  opacity = 1,
+  class: className,
+} = Astro.props;
+---
+
+<svg
+  viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  aria-hidden="true"
+  focusable="false"
+  class:list={['koru', className]}
+  style={`opacity:${opacity};display:block;`}
+>
+  <!--
+    Koru spiral — single continuous open path.
+
+    The geometry: imagine a nautilus cross-section drawn as a line.
+    - The spiral starts at the tip of the stalk (top centre-right).
+    - It sweeps outward, looping around a central bulb.
+    - The stalk exits the outer loop and rises cleanly.
+
+    Path breakdown (all coordinates in viewBox 0 0 100 100):
+      Centre of spiral bulb: (48, 58)
+      Inner radius: ~9  (tight inner loop)
+      Outer loop radius: ~22
+
+    The path traces:
+      1. Stalk tip at (62, 8) — top of the piece
+      2. Stalk curves down-left to meet the outer spiral entry at (70, 58)
+      3. Outer arc sweeps counter-clockwise (right→bottom→left) to (48, 36)
+      4. Continues inward, spiralling to the inner bulb tangent at (48, 49)
+      5. Inner circle closes the bulb (CCW, small radius ~9)
+      6. Path re-opens at (48, 49) and the inner loop terminates at (57, 58)
+         (meeting point where spiral naturally lands before folding in)
+
+    This creates the characteristic koru silhouette:
+      - Round tight bulb at the base
+      - One sweeping outer loop
+      - Stalk rising from the loop exit
+  -->
+
+  <!--
+    Single-path koru:
+    The stalk descends from (62,8), curves into an outer loop around (48,58),
+    the loop spirals inward to the bulb, completing the closed inner circle.
+  -->
+
+  <!-- Outer stalk and spiral body -->
+  <path
+    d="
+      M62,8
+      C62,18 66,30 68,42
+      C70,54 68,64 60,70
+      C52,76 38,76 30,68
+      C22,60 22,46 30,38
+      C38,30 52,30 60,38
+      C65,43 66,50 63,56
+      C60,62 54,65 48,64
+      C42,63 38,58 38,52
+      C38,46 42,42 48,42
+      C54,42 57,46 57,52
+      C57,56 54,59 51,59
+    "
+    fill="none"
+    stroke="#d8ac4e"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+
+<style>
+  .koru {
+    overflow: visible;
+  }
+</style>

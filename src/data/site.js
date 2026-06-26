@@ -28,14 +28,24 @@ export const site = {
   },
 
   story: {
-    eyebrow: 'WHERE IT COMES FROM',
-    heading: 'Straight from the wild corners of New Zealand.',
-    body: "Honey Badgers is a New Zealand owned brand. We work directly with beekeepers we know and trust, pulling honey from some of the most remote land in the country. Every batch is tested before it leaves us. What you get is honey we would happily put on our own table. Clean, natural Mānuka, an easy part of your everyday wellbeing.",
+    eyebrow: 'WHERE IT COMES FROM · NŌ HEA',
+    heading: 'Born in Aotearoa.',
+    body: 'New Zealand owned, New Zealand made. Our Mānuka is single origin, drawn from the land around New Plymouth in Taranaki and worked by local beekeepers who know this whenua well. Every batch is tested before it leaves us. This is honey we would happily put on our own table, and we are proud of where it comes from.',
     stats: [
       { value: '100%', label: 'NEW ZEALAND SOURCED' },
       { value: '829+', label: 'PEAK CERTIFIED MGO' },
       { value: 'EVERY', label: 'BATCH TESTED' },
     ],
+  },
+
+  nz: {
+    eyebrow: 'PROUDLY NEW ZEALAND OWNED',
+    heading: 'Born in Aotearoa.',
+    body: 'New Zealand owned and New Zealand made. Our Mānuka is single origin, drawn from the land around New Plymouth in the Taranaki region of Aotearoa and worked by local beekeepers who know this whenua well. This is honey with a home, and we are proud of where it comes from.',
+    stamp: '100% NZ OWNED · MADE IN AOTEAROA',
+    mapEyebrow: 'WHERE IT COMES FROM · NŌ HEA',
+    mapHeading: 'Single origin, from New Plymouth.',
+    mapBody: 'Every jar traces back to one place: the Mānuka country around New Plymouth, in the Taranaki region of Aotearoa. Single origin, fully traceable, from this whenua to your shelf.',
   },
 
   trust: [
@@ -177,6 +187,7 @@ export const site = {
       { label: 'WHOLESALE', href: '#trade' },
       { label: 'CONTACT', href: '#enquire' },
     ],
+    proud: 'Proudly New Zealand owned · Made in Aotearoa',
     copyright: '© 2026 Honey Badgers International · Product of New Zealand',
     disclaimer: 'Independently tested and certified · Not intended to diagnose, treat or cure any disease.',
   },

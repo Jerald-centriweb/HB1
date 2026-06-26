@@ -100,6 +100,26 @@ const orgSchema = {
         0%, 100% { opacity: 0.5; }
         50% { opacity: 1; }
       }
+      @keyframes hb-scrolldot {
+        0% { top: -2px; opacity: 0; }
+        15% { opacity: 1; }
+        75% { opacity: 1; }
+        100% { top: 40px; opacity: 0; }
+      }
+
+      /* Full-bleed nature backgrounds: slow drift + blur-up fade-in. */
+      @keyframes hb-kenburns {
+        from { transform: scale(1.0); }
+        to   { transform: scale(1.045); }
+      }
+      .hb-kb {
+        animation: hb-kenburns 32s ease-in-out infinite alternate;
+        transform-origin: center center;
+      }
+      .hb-natbg-img.is-loaded { opacity: 1 !important; }
+      @media (prefers-reduced-motion: reduce) {
+        .hb-kb { animation: none; }
+      }
 
       /* Enquiry form: let fields shrink inside the modal card (no mobile clip) */
       #hb-modal-card input,

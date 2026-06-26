@@ -1,0 +1,54 @@
+---
+// Full-bleed, blended nature background.
+// - Responsive WebP via srcset (+ optional art-directed mobile crop)
+// - LQIP blur-up so it never "pops in"
+// - Optional slow Ken Burns drift for life
+// - `.hb-natbg-inner` is over-sized so motion.js can scroll-parallax it
+//   without ever revealing an edge
+// - A gradient scrim is passed in so each section blends into the next
+import manifest from '../data/nature-manifest.json';
+
+interface Props {
+  name: string;          // key in the manifest (desktop/base image)
+  mobileName?: string;   // optional portrait crop for <=640px
+  sizes?: string;
+  scrim?: string;        // CSS background value layered over the image
+  eager?: boolean;       // hero = true (preload, no lazy)
+  kenburns?: boolean;
+}
+const { name, mobileName, sizes = '100vw', scrim, eager = false, kenburns = false } = Astro.props;
+const m = manifest[name];
+const srcsetFor = (n: string) =>
+  manifest[n].widths.map((w: number) => `/assets/nature/${n}-${w}.webp ${w}w`).join(', ');
+const largest = Math.max(...m.widths);
+const fallback = `/assets/nature/${name}-${largest}.webp`;
+---
+<div class="hb-natbg" style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+  <div class="hb-natbg-inner" style="position:absolute;inset:-6% 0;will-change:transform;">
+    <!-- blur-up placeholder -->
+    <div
+      aria-hidden="true"
+      style={`position:absolute;inset:0;background-image:url('${m.lqip}');background-size:cover;background-position:center;filter:blur(26px);transform:scale(1.15);`}
+    ></div>
+    <picture>
+      {mobileName && (
+        <source media="(max-width:640px)" srcset={srcsetFor(mobileName)} sizes={sizes} />
+      )}
+      <img
+        class={`hb-natbg-img${kenburns ? ' hb-kb' : ''}`}
+        src={fallback}
+        srcset={srcsetFor(name)}
+        sizes={sizes}
+        alt=""
+        aria-hidden="true"
+        width={m.width}
+        height={m.height}
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : 'auto'}
+        decoding="async"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.1s ease;"
+      />
+    </picture>
+  </div>
+  {scrim && <div aria-hidden="true" style={`position:absolute;inset:0;${scrim}`}></div>}
+</div>

@@ -1,0 +1,111 @@
+{
+  "hero-valley": {
+    "src": "ChatGPT Image Jun 25, 2026, 07_07_38 PM (1).png",
+    "width": 1672,
+    "height": 941,
+    "orientation": "landscape",
+    "widths": [
+      1600,
+      1280,
+      768,
+      480
+    ],
+    "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAwCdASoUAAsAPu1krU6ppaSiMAgBMB2JQBOl65AvIcdVXyk5l62AAP4l2+T5Tppk237v2NoWSt30JxKoTshw4sZj/QjzoAA="
+  },
+  "hero-valley-portrait": {
+    "src": "ChatGPT Image Jun 25, 2026, 07_07_39 PM (2).png",
+    "width": 941,
+    "height": 1672,
+    "orientation": "portrait",
+    "widths": [
+      768,
+      480
+    ],
+    "lqip": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAABQBQCdASoUACQAPu1iqU4ppaOiNVQIATAdiWMArhwLM1kD4nV/nQzP65RvKQvKnVlj4ZAA/naOdotXuNEMzW5LBMSUMhzurA+p4FMt2R0Ozo7xpx2kRxFL5CKQcPG0Rqpvun/xHuPLEQBtX3NkuCXHQJ77Bcp9CQAAAA=="
+  },
+  "blossom-bee": {
+    "src": "ChatGPT Image Jun 25, 2026, 07_07_39 PM (3).png",
+    "width": 1254,
+    "height": 1254,
+    "orientation": "landscape",
+    "widths": [
+      768,
+      480
+    ],
+    "lqip": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAwBQCdASoUABQAPu1gqU2ppSOiMBgMATAdiWMAxvQQbjKlh1oBKFi83IU4+EQnVChGAAD+6XKRms+kbyz6mxJihqXy5gh/UHVsM+4Bm+BpFMo7J5dJEv4fYipwsVuGvurekoNKQU/Bnmr8xps9ecAA"
+  },
+  "beehives-peak": {
+    "src": "ChatGPT Image Jun 25, 2026, 07_07_39 PM (4).png",
+    "width": 1672,
+    "height": 941,
+    "orientation": "landscape",
+    "widths": [
+      1280,
+      768,
+      480
+    ],
+    "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAwCdASoUAAsAPu1mq04ppaQiMAgBMB2JZQCdACG8RhgTiOIe4AD+7NCqttS7n4TrMIOsXQCAuWKalgdFfHFuse6wAA=="
+  },
+  "jar-mountains": {
+    "src": "ChatGPT Image Jun 25, 2026, 07_01_27 PM (1).png",
+    "width": 1672,
+    "height": 941,
+    "orientation": "landscape",
+    "widths": [
+      1280,
+      768,
+      480
+    ],
+    "lqip": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADwAwCdASoUAAsAPu1kqk2ppaQiMAgBMB2JQBOgDR2Csxswcdp/AnCgAP7+FpO2K9wt3aobYYs8VjYiOZbKF4Bkf+FD59A574AAAA=="
+  },
+  "beekeepers-fiord": {
+    "src": "ChatGPT Image Jun 25, 2026, 07_01_27 PM (2).png",
+    "width": 1672,
+    "height": 941,
+    "orientation": "landscape",
+    "widths": [
+      1600,
+      1280,
+      768,
+      480
+    ],
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JYgCdACFsFZjDi6x/I6xZgAD+8rG4aqqBALItNHGiKNKOh9psPx3P0kTrJ8gAcFnbV8AA"
+  },
+  "jar-lineup": {
+    "src": "ChatGPT Image Jun 25, 2026, 07_01_27 PM (3).png",
+    "width": 1672,
+    "height": 941,
+    "orientation": "landscape",
+    "widths": [
+      1280,
+      768,
+      480
+    ],
+    "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAwCdASoUAAsAPu1krU2ppaSiMAgBMB2JQBdgDSdrOV/i+X8n6QAA/v5JtUmQs1rGWRgdS4KvK3DAGJZCN1UhKsrdyewDsAA="
+  },
+  "fury-gym": {
+    "src": "ChatGPT Image Jun 25, 2026, 07_01_27 PM (4).png",
+    "width": 1672,
+    "height": 941,
+    "orientation": "landscape",
+    "widths": [
+      1280,
+      768,
+      480
+    ],
+    "lqip": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACQAwCdASoUAAsAPu1kqk4ppaQiMAgBMB2JZQCdAB4+1DsHGZAAAP6EvmxREAcYZnoxCWPaPjbP7Vmx0l0ITGgAAAA="
+  },
+  "jar-honeycomb": {
+    "src": "ChatGPT Image Jun 25, 2026, 07_01_28 PM (5).png",
+    "width": 1672,
+    "height": 941,
+    "orientation": "landscape",
+    "widths": [
+      1600,
+      1280,
+      768,
+      480
+    ],
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAABQAwCdASoUAAsAPu1kqk4ppaQiMAgBMB2JZQBCAAHdxDsYAAD+8Cb3rtJ6dVv0WJ7pk13Y/j6dHxUBCgVzjB4cBPgNXUAA"
+  }
+}

@@ -159,9 +159,10 @@ onScroll();
 $$('[data-reveal]').forEach((el) => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(42px) scale(.985)';
+  el.style.filter = 'blur(7px)';
   el.style.transition =
-    'opacity .9s cubic-bezier(.16,1,.3,1), transform 1.05s cubic-bezier(.16,1,.3,1)';
-  el.style.willChange = 'opacity, transform';
+    'opacity .9s cubic-bezier(.16,1,.3,1), transform 1.05s cubic-bezier(.16,1,.3,1), filter .9s ease';
+  el.style.willChange = 'opacity, transform, filter';
 });
 function showEl(el) {
   let delay = 0;
@@ -175,6 +176,7 @@ function showEl(el) {
   el.style.transitionDelay = delay + 'ms';
   el.style.opacity = '1';
   el.style.transform = 'none';
+  el.style.filter = 'none';
 }
 const io = new IntersectionObserver(
   (entries) => {
@@ -306,6 +308,18 @@ function applyMq() {
 }
 mq.addEventListener('change', applyMq);
 applyMq();
+
+// ---- full-bleed nature backgrounds: fade in once each image is decoded ----
+// Mirrors the reveal safety net: never leave a background invisible.
+$$('.hb-natbg-img').forEach((img) => {
+  const show = () => img.classList.add('is-loaded');
+  if (img.complete && img.naturalWidth > 0) show();
+  else {
+    img.addEventListener('load', show, { once: true });
+    img.addEventListener('error', show, { once: true }); // show LQIP-less rather than blank
+  }
+});
+setTimeout(() => $$('.hb-natbg-img').forEach((i) => i.classList.add('is-loaded')), 2200);
 
 // ---- certification badges: swap the text emblem for a real logo if one exists ----
 // Drop official logos at /assets/certs/<mark>.png (mgo/haccp/rmp/nz). If a file

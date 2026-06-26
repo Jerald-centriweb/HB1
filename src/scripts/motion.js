@@ -252,8 +252,101 @@ gsap.matchMedia().add(
         );
       }
     }
+
+    // ── 10. FULL-BLEED NATURE BACKGROUNDS: scroll parallax (depth) ──────────
+    // Each .hb-natbg-inner is over-sized (inset:-9% 0), so drifting it never
+    // reveals an edge. The image glides slower than the copy = a sense of depth
+    // and forward motion as you scroll.
+    document.querySelectorAll('.hb-natbg-inner').forEach((inner) => {
+      const sec = inner.closest('section');
+      if (!sec) return;
+      gsap.fromTo(
+        inner,
+        { yPercent: -5 },
+        {
+          yPercent: 5,
+          ease: 'none',
+          scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true },
+        }
+      );
+    });
   }
 ); // end gsap.matchMedia desktop
+
+// ── HERO: staggered, blur-in intro on load (modern app-like entrance) ─────────
+if (!reduce) {
+  const heroContent = document.querySelector('.hb-hero-content');
+  if (heroContent) {
+    gsap.from(heroContent.children, {
+      opacity: 0,
+      y: 36,
+      filter: 'blur(10px)',
+      duration: 1.1,
+      stagger: 0.13,
+      ease: 'power3.out',
+      delay: 0.2,
+    });
+  }
+}
+
+// ── SCROLL PROGRESS BAR (thin gold thread at the top) ─────────────────────────
+(function () {
+  const bar = document.createElement('div');
+  bar.id = 'hb-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  bar.style.cssText =
+    'position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);' +
+    'z-index:400;background:linear-gradient(90deg,#c8922f,#f3cd6b);box-shadow:0 0 12px rgba(243,205,107,.55);pointer-events:none;';
+  document.body.appendChild(bar);
+  const update = () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = h > 0 ? window.scrollY / h : 0;
+    bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, p)) + ')';
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
+
+// ── COUNT-UP: numeric stats tick up when they scroll into view ────────────────
+if (!reduce) {
+  const countUp = (el) => {
+    const raw = (el.textContent || '').trim();
+    const m = raw.match(/^(\D*)(\d[\d,]*)(.*)$/); // "829+" -> 829, "100%" -> 100; "EVERY" -> skip
+    if (!m) return;
+    const pre = m[1], target = parseInt(m[2].replace(/,/g, ''), 10), suf = m[3];
+    const o = { v: 0 };
+    gsap.to(o, {
+      v: target,
+      duration: 1.5,
+      ease: 'power2.out',
+      onUpdate: () => { el.textContent = pre + Math.round(o.v) + suf; },
+    });
+  };
+  ScrollTrigger.batch('[data-count]', {
+    start: 'top 88%',
+    once: true,
+    onEnter: (els) => els.forEach(countUp),
+  });
+}
+
+// ── TRACEABILITY STEPPER: the connector line draws in left-to-right ───────────
+if (!reduce) {
+  const traceLine = document.querySelector('.hb-trace-line');
+  if (traceLine) {
+    gsap.fromTo(
+      traceLine,
+      { scaleX: 0 },
+      {
+        scaleX: 1,
+        transformOrigin: 'left center',
+        ease: 'power2.out',
+        duration: 1.2,
+        scrollTrigger: { trigger: '.hb-trace', start: 'top 80%', once: true },
+      }
+    );
+  }
+}
 
 // Pointer-reactive micro-interactions removed for a restrained, high-end feel. Motion is scroll-driven only.
 
