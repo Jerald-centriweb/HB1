@@ -38,6 +38,13 @@ export const site = {
     ],
   },
 
+  nz: {
+    eyebrow: 'PROUDLY NEW ZEALAND OWNED',
+    heading: 'Born in Aotearoa.',
+    body: 'New Zealand owned and New Zealand made. Our Mānuka comes from remote corners of Aotearoa that most people never see, worked by beekeepers who have known this land for generations. This is honey with a home, and we are proud of where it comes from.',
+    stamp: '100% NZ OWNED · MADE IN AOTEAROA',
+  },
+
   trust: [
     { n: '01', title: 'CERTIFIED STRENGTH', body: 'Independently graded and verified MGO. Not a guess.' },
     { n: '02', title: 'PURE NZ ORIGIN', body: 'Remote New Zealand land. No compromises on where it comes from.' },
@@ -177,6 +184,7 @@ export const site = {
       { label: 'WHOLESALE', href: '#trade' },
       { label: 'CONTACT', href: '#enquire' },
     ],
+    proud: 'Proudly New Zealand owned · Made in Aotearoa',
     copyright: '© 2026 Honey Badgers International · Product of New Zealand',
     disclaimer: 'Independently tested and certified · Not intended to diagnose, treat or cure any disease.',
   },
