@@ -28,9 +28,9 @@ export const site = {
   },
 
   story: {
-    eyebrow: 'WHERE IT COMES FROM',
-    heading: 'Straight from the wild corners of New Zealand.',
-    body: "Honey Badgers is a New Zealand owned brand. We work directly with beekeepers we know and trust, pulling honey from some of the most remote land in the country. Every batch is tested before it leaves us. What you get is honey we would happily put on our own table. Clean, natural Mānuka, an easy part of your everyday wellbeing.",
+    eyebrow: 'WHERE IT COMES FROM · NŌ HEA',
+    heading: 'Born in Aotearoa.',
+    body: 'New Zealand owned, New Zealand made. Our Mānuka is single origin, drawn from the land around New Plymouth in Taranaki and worked by local beekeepers who know this whenua well. Every batch is tested before it leaves us. This is honey we would happily put on our own table, and we are proud of where it comes from.',
     stats: [
       { value: '100%', label: 'NEW ZEALAND SOURCED' },
       { value: '829+', label: 'PEAK CERTIFIED MGO' },

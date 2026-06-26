@@ -69,7 +69,7 @@ const btnStyle = {
       </video>
       <!-- scrim over image + video so the headline stays legible and the section
            fades into the trust strip below (no hard seam) -->
-      <div aria-hidden="true" style="position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(8,6,3,.9) 0%,rgba(8,6,3,.56) 40%,rgba(8,6,3,.18) 66%,rgba(8,6,3,0) 90%),linear-gradient(0deg,rgba(8,6,3,.82) 0%,transparent 44%),linear-gradient(180deg,rgba(8,6,3,.5) 0%,transparent 30%);"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(8,6,3,.9) 0%,rgba(8,6,3,.56) 40%,rgba(8,6,3,.18) 66%,rgba(8,6,3,0) 90%),linear-gradient(0deg,#0b0907 0%,rgba(11,9,7,0) 42%),linear-gradient(180deg,rgba(8,6,3,.5) 0%,transparent 30%);"></div>
 
       <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;width:100%;">
         <div data-reveal style="max-width:660px;">
@@ -101,26 +101,30 @@ const btnStyle = {
     </section>
 
     <!-- ===== STORY (full-bleed NZ landscape, blended) ===== -->
-    <section id="story" class="hb-story" style="position:relative;overflow:hidden;display:flex;align-items:center;min-height:90vh;padding:clamp(90px,13vw,150px) clamp(18px,4vw,56px);">
+    <section id="story" class="hb-story" style="position:relative;overflow:hidden;display:flex;align-items:center;min-height:92vh;padding:clamp(96px,14vw,160px) clamp(18px,4vw,56px);">
       <NatureBg name="hero-valley" mobileName="hero-valley-portrait" kenburns={true}
         sizes="100vw"
-        scrim="background:linear-gradient(90deg,rgba(8,6,3,.88) 0%,rgba(8,6,3,.55) 42%,rgba(8,6,3,.22) 70%,rgba(8,6,3,.05) 100%),linear-gradient(0deg,rgba(8,6,3,.76) 0%,transparent 48%),linear-gradient(180deg,rgba(8,6,3,.62) 0%,transparent 32%);" />
+        scrim="background:linear-gradient(90deg,rgba(8,6,3,.9) 0%,rgba(8,6,3,.52) 44%,rgba(8,6,3,.18) 72%,rgba(8,6,3,0) 100%),linear-gradient(180deg,#0b0907 0%,rgba(11,9,7,0) 24%,rgba(11,9,7,0) 76%,#0b0907 100%);" />
       <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;width:100%;">
         <div style="max-width:600px;">
           <div data-reveal style="font-size:12px;letter-spacing:5px;color:#e0b552;font-weight:700;margin-bottom:22px;">{site.story.eyebrow}</div>
-          <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(30px,4vw,56px);line-height:1.04;margin:0;letter-spacing:-.5px;text-shadow:0 2px 24px rgba(0,0,0,.55);">{site.story.heading}</h2>
+          <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(32px,4.4vw,60px);line-height:1.02;margin:0;letter-spacing:-.5px;text-shadow:0 2px 24px rgba(0,0,0,.55);">{site.story.heading}</h2>
           <p data-reveal style="font-size:clamp(15px,1.3vw,18px);color:#dccfb8;max-width:560px;margin:28px 0 0;line-height:1.7;text-shadow:0 1px 12px rgba(0,0,0,.5);">{site.story.body}</p>
-          <div data-reveal style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(216,172,78,.2);border:1px solid rgba(216,172,78,.2);margin-top:44px;max-width:560px;" class="hb-stat3">
+          <div data-reveal style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(216,172,78,.2);border:1px solid rgba(216,172,78,.2);margin-top:40px;max-width:560px;" class="hb-stat3">
             {site.story.stats.map((s) => (
-              <div style="background:rgba(10,8,5,.78);backdrop-filter:blur(3px);padding:30px 16px;"><div data-count style="font-family:'Archivo Black';font-size:clamp(28px,3.4vw,44px);background:linear-gradient(180deg,#f6d680,#c8922f);-webkit-background-clip:text;background-clip:text;color:transparent;">{s.value}</div><div style="font-size:11.5px;letter-spacing:1.5px;color:#cdbfa3;margin-top:8px;">{s.label}</div></div>
+              <div style="background:rgba(10,8,5,.78);backdrop-filter:blur(3px);padding:28px 16px;"><div data-count style="font-family:'Archivo Black';font-size:clamp(28px,3.4vw,44px);background:linear-gradient(180deg,#f6d680,#c8922f);-webkit-background-clip:text;background-clip:text;color:transparent;">{s.value}</div><div style="font-size:11.5px;letter-spacing:1.5px;color:#cdbfa3;margin-top:8px;">{s.label}</div></div>
             ))}
+          </div>
+          <div data-reveal style="display:inline-flex;align-items:center;gap:10px;margin-top:28px;border:1px solid rgba(243,205,107,.5);border-radius:40px;padding:9px 20px;background:rgba(11,9,7,.4);backdrop-filter:blur(5px);">
+            <span style="width:7px;height:7px;border-radius:50%;background:#f3cd6b;box-shadow:0 0 10px #f3cd6b;animation:hb-pulse 2s infinite;"></span>
+            <span style="font-size:11px;letter-spacing:2.5px;color:#f3cd6b;font-weight:700;">{site.nz.stamp}</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ===== TRUST STRIP ===== -->
-    <section style="border-top:1px solid rgba(216,172,78,.14);border-bottom:1px solid rgba(216,172,78,.14);background:#0e0b07;">
+    <section style="position:relative;z-index:1;padding:clamp(8px,2vw,24px) 0;">
       <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);" class="hb-trust">
         {site.trust.map((t, i) => (
           <div data-reveal style={`padding:30px clamp(14px,2vw,28px);${i < site.trust.length - 1 ? 'border-right:1px solid rgba(216,172,78,.1);' : ''}`}>
@@ -132,26 +136,9 @@ const btnStyle = {
       </div>
     </section>
 
-    <!-- ===== NZ ORIGIN / PRIDE (full-bleed, blended) ===== -->
-    <section id="origin" class="hb-origin" style="position:relative;overflow:hidden;display:flex;align-items:center;min-height:78vh;padding:clamp(80px,11vw,140px) clamp(18px,4vw,56px);text-align:center;">
-      <NatureBg name="beekeepers-fiord" kenburns={true} sizes="100vw"
-        scrim="background:linear-gradient(180deg,rgba(8,6,3,.82) 0%,rgba(8,6,3,.36) 34%,rgba(8,6,3,.36) 66%,rgba(8,6,3,.85) 100%),radial-gradient(120% 85% at 50% 50%,transparent 44%,rgba(8,6,3,.5));" />
-      <div style="position:relative;z-index:3;max-width:820px;margin:0 auto;">
-        <div data-reveal style="font-size:12px;letter-spacing:5px;color:#e0b552;font-weight:700;margin-bottom:20px;">{site.nz.eyebrow}</div>
-        <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(34px,5vw,68px);line-height:1.02;margin:0;letter-spacing:-.5px;text-shadow:0 2px 26px rgba(0,0,0,.6);">{site.nz.heading}</h2>
-        <p data-reveal style="font-size:clamp(15px,1.35vw,19px);color:#e3d6bf;max-width:620px;margin:26px auto 0;line-height:1.7;text-shadow:0 1px 12px rgba(0,0,0,.5);">{site.nz.body}</p>
-        <div data-reveal style="display:inline-flex;align-items:center;gap:10px;margin-top:30px;border:1px solid rgba(243,205,107,.5);border-radius:40px;padding:10px 22px;background:rgba(11,9,7,.4);backdrop-filter:blur(5px);">
-          <span style="width:7px;height:7px;border-radius:50%;background:#f3cd6b;box-shadow:0 0 10px #f3cd6b;animation:hb-pulse 2s infinite;"></span>
-          <span style="font-size:11px;letter-spacing:2.5px;color:#f3cd6b;font-weight:700;">{site.nz.stamp}</span>
-        </div>
-      </div>
-    </section>
-
     <!-- ===== RANGE (interactive product selector) ===== -->
-    <section id="range" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);border-top:1px solid rgba(216,172,78,.12);overflow:hidden;">
-      <NatureBg name="beehives-peak" sizes="100vw"
-        scrim="background:linear-gradient(180deg,rgba(8,6,3,.82) 0%,rgba(8,6,3,.7) 45%,rgba(8,6,3,.8) 100%),radial-gradient(120% 90% at 50% 25%,rgba(8,6,3,.3),rgba(8,6,3,.74));" />
-      <div data-parallax="0.3" data-glow="1" style="position:absolute;right:-12%;top:14%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.10),transparent 62%);z-index:1;"></div>
+    <section id="range" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);overflow:hidden;">
+      <div data-parallax="0.3" data-glow="1" style="position:absolute;right:-12%;top:14%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.10),transparent 62%);z-index:0;"></div>
       <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;">
         <div style="text-align:center;margin-bottom:18px;">
           <div data-reveal style="font-size:12px;letter-spacing:5px;color:#a8842f;font-weight:700;margin-bottom:16px;">{site.range.eyebrow}</div>
@@ -207,10 +194,8 @@ const btnStyle = {
 
 
     <!-- ===== FURY ===== -->
-    <section id="fury" style="position:relative;padding:clamp(80px,10vw,150px) clamp(18px,4vw,56px);overflow:hidden;border-top:1px solid rgba(216,172,78,.12);">
-      <NatureBg name="jar-mountains" sizes="100vw"
-        scrim="background:linear-gradient(90deg,rgba(8,6,3,.5) 0%,rgba(8,6,3,.68) 50%,rgba(8,6,3,.84) 100%),linear-gradient(180deg,rgba(8,6,3,.6),transparent 34%,rgba(8,6,3,.6));" />
-      <div data-parallax="0.4" style="position:absolute;inset:0;z-index:1;opacity:.6;background:linear-gradient(115deg,transparent 40%,rgba(243,205,107,.05) 50%,transparent 60%);"></div>
+    <section id="fury" style="position:relative;padding:clamp(80px,10vw,150px) clamp(18px,4vw,56px);overflow:hidden;">
+      <div data-parallax="0.4" style="position:absolute;inset:0;z-index:0;opacity:.6;background:linear-gradient(115deg,transparent 40%,rgba(243,205,107,.05) 50%,transparent 60%);"></div>
       <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,80px);align-items:center;" class="hb-fury-grid">
         <div style="position:relative;display:flex;justify-content:center;" data-reveal>
           <div data-glow="1" style="position:absolute;width:90%;height:86%;border-radius:50%;background:radial-gradient(circle,rgba(243,205,107,.16),rgba(216,172,78,.05) 45%,transparent 68%);top:6%;"></div>
@@ -273,7 +258,7 @@ const btnStyle = {
     </section>
 
     <!-- ===== AOTEAROA MAP (sourcing / NZ identity) ===== -->
-    <section id="aotearoa" style="position:relative;overflow:hidden;padding:clamp(80px,11vw,150px) clamp(18px,4vw,56px);background:linear-gradient(180deg,#0b0907,#0e0b07 50%,#0b0907);border-top:1px solid rgba(216,172,78,.12);text-align:center;">
+    <section id="aotearoa" style="position:relative;overflow:hidden;padding:clamp(80px,11vw,150px) clamp(18px,4vw,56px);background:linear-gradient(180deg,#0b0907,#0e0b07 50%,#0b0907);text-align:center;">
       <!-- faint silver-fern watermark, centred (symmetric, never a corner block) -->
       <div aria-hidden="true" style="position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);opacity:.045;pointer-events:none;z-index:0;">
         <SilverFern size={680} />
@@ -290,7 +275,7 @@ const btnStyle = {
     </section>
 
     <!-- ===== QUALITY ===== -->
-    <section id="quality" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);background:linear-gradient(180deg,#100c07,#0b0907);border-top:1px solid rgba(216,172,78,.12);overflow:hidden;">
+    <section id="quality" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);background:#0b0907;overflow:hidden;">
       <!-- Subtle honey backdrop. Toggled with the hero via the BACKDROP control;
            off by default on mobile. Heavily darkened so the seal/text stay crisp. -->
       <video
@@ -304,7 +289,7 @@ const btnStyle = {
         <source src="/assets/video/quality.mp4" type="video/mp4">
       </video>
       <!-- Darkening veil over the video: keeps the centred seal + copy legible. -->
-      <div id="hb-quality-veil" aria-hidden="true" style="display:none;position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 80% at 50% 32%,rgba(11,9,7,.26),rgba(11,9,7,.68) 70%),linear-gradient(180deg,rgba(11,9,7,.4),rgba(11,9,7,.76));"></div>
+      <div id="hb-quality-veil" aria-hidden="true" style="display:none;position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 80% at 50% 32%,rgba(11,9,7,.22),rgba(11,9,7,.6) 72%),linear-gradient(180deg,#0b0907 0%,rgba(11,9,7,.3) 16%,rgba(11,9,7,.45) 84%,#0b0907 100%);"></div>
       <div data-parallax="0.3" data-glow="1" style="position:absolute;left:-10%;top:-6%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.10),transparent 60%);z-index:1;"></div>
       <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;text-align:center;">
         <!-- Large centered MGO seal -->
@@ -344,10 +329,8 @@ const btnStyle = {
     </section>
 
     <!-- ===== TRADE ===== -->
-    <section id="trade" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);overflow:hidden;border-top:1px solid rgba(216,172,78,.12);">
-      <NatureBg name="jar-lineup" sizes="100vw"
-        scrim="background:linear-gradient(180deg,rgba(8,6,3,.82) 0%,rgba(8,6,3,.7) 45%,rgba(8,6,3,.82) 100%),radial-gradient(120% 90% at 50% 30%,rgba(8,6,3,.34),rgba(8,6,3,.74));" />
-      <div data-parallax="0.3" data-glow="1" style="position:absolute;right:-8%;top:-10%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.1),transparent 60%);z-index:1;"></div>
+    <section id="trade" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);overflow:hidden;">
+      <div data-parallax="0.3" data-glow="1" style="position:absolute;right:-8%;top:-10%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.1),transparent 60%);z-index:0;"></div>
       <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto;">
         <div data-reveal style="text-align:center;margin-bottom:54px;">
           <div style="font-size:12px;letter-spacing:5px;color:#a8842f;font-weight:700;margin-bottom:16px;">{site.trade.eyebrow}</div>
@@ -377,7 +360,7 @@ const btnStyle = {
     </section>
 
     <!-- ===== FINAL CTA ===== -->
-    <section id="enquire" style="position:relative;padding:clamp(90px,12vw,170px) clamp(18px,4vw,56px);text-align:center;background:radial-gradient(120% 90% at 50% 0%,rgba(60,44,16,.65),transparent 60%),#0b0907;overflow:hidden;border-top:1px solid rgba(216,172,78,.12);">
+    <section id="enquire" style="position:relative;padding:clamp(90px,12vw,170px) clamp(18px,4vw,56px);text-align:center;background:radial-gradient(120% 90% at 50% 0%,rgba(60,44,16,.65),transparent 60%),#0b0907;overflow:hidden;">
       <div data-parallax="0.4" style="position:absolute;inset:0;opacity:.4;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2296%22 viewBox=%220 0 56 96%22><g fill=%22none%22 stroke=%22%23d8ac4e%22 stroke-opacity=%220.10%22 stroke-width=%221%22><path d=%22M28 1L54 16v32L28 63 2 48V16z%22/></g></svg>');background-size:56px 96px;"></div>
       <div data-reveal style="position:relative;max-width:780px;margin:0 auto;">
         <img src="/assets/logo-filled.png" alt={site.brand.name} style="height:90px;width:auto;margin:0 auto 28px;display:block;filter:drop-shadow(0 10px 24px rgba(0,0,0,.6));">
