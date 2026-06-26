@@ -72,7 +72,7 @@ const btnStyle = {
       <div aria-hidden="true" style="position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(8,6,3,.9) 0%,rgba(8,6,3,.56) 40%,rgba(8,6,3,.18) 66%,rgba(8,6,3,0) 90%),linear-gradient(0deg,#0b0907 0%,rgba(11,9,7,0) 42%),linear-gradient(180deg,rgba(8,6,3,.5) 0%,transparent 30%);"></div>
 
       <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;width:100%;">
-        <div data-reveal style="max-width:660px;">
+        <div class="hb-hero-content" style="max-width:660px;">
           <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(216,172,78,.4);border-radius:40px;padding:7px 16px;margin-bottom:26px;background:rgba(11,9,7,.35);backdrop-filter:blur(4px);">
             <span style="width:6px;height:6px;border-radius:50%;background:#f3cd6b;box-shadow:0 0 10px #f3cd6b;animation:hb-pulse 2s infinite;"></span>
             <span style="font-size:11px;letter-spacing:3px;color:#e7d8b8;font-weight:600;">{site.hero.badge}</span>
@@ -97,7 +97,7 @@ const btnStyle = {
         </div>
       </div>
 
-      <div id="hb-scroll-hint" style="position:absolute;bottom:26px;left:clamp(18px,4vw,56px);z-index:4;font-size:10px;letter-spacing:3px;color:#9c8f76;display:flex;flex-direction:column;align-items:center;gap:8px;transition:opacity .4s;">SCROLL<span style="width:1px;height:34px;background:linear-gradient(#d8ac4e,transparent);"></span></div>
+      <div id="hb-scroll-hint" style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:4;font-size:10px;letter-spacing:3px;color:#cdbfa3;display:flex;flex-direction:column;align-items:center;gap:10px;transition:opacity .4s;">SCROLL<span style="position:relative;display:block;width:1px;height:42px;background:linear-gradient(rgba(216,172,78,.45),rgba(216,172,78,.04));"><span style="position:absolute;left:50%;top:0;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#f3cd6b;box-shadow:0 0 8px #f3cd6b;animation:hb-scrolldot 1.9s cubic-bezier(.7,0,.3,1) infinite;"></span></span></div>
     </section>
 
     <!-- ===== STORY (full-bleed NZ landscape, blended) ===== -->

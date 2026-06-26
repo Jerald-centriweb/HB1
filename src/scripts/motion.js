@@ -273,6 +273,22 @@ gsap.matchMedia().add(
   }
 ); // end gsap.matchMedia desktop
 
+// ── HERO: staggered, blur-in intro on load (modern app-like entrance) ─────────
+if (!reduce) {
+  const heroContent = document.querySelector('.hb-hero-content');
+  if (heroContent) {
+    gsap.from(heroContent.children, {
+      opacity: 0,
+      y: 36,
+      filter: 'blur(10px)',
+      duration: 1.1,
+      stagger: 0.13,
+      ease: 'power3.out',
+      delay: 0.2,
+    });
+  }
+}
+
 // ── SCROLL PROGRESS BAR (thin gold thread at the top) ─────────────────────────
 (function () {
   const bar = document.createElement('div');
