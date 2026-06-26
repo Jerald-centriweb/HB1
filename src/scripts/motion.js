@@ -29,23 +29,6 @@ if (!reduce) {
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 
-  // ── Scroll-velocity drift: the image moments lean slightly with momentum and
-  //    ease back to still when you stop (the subtle "Awwwards/Lenis" feel).
-  //    Applied only to the full-bleed media (never text) and only on desktop. ──
-  if (window.innerWidth > 900) {
-    const inners = gsap.utils.toArray('.hb-natbg-inner');
-    if (inners.length) {
-      const skewers = inners.map((el) =>
-        gsap.quickTo(el, 'skewY', { duration: 0.55, ease: 'power3' })
-      );
-      const clampSkew = gsap.utils.clamp(-2.2, 2.2);
-      lenis.on('scroll', ({ velocity }) => {
-        const sk = clampSkew(velocity * 0.045);
-        skewers.forEach((s) => s(sk));
-      });
-    }
-  }
-
   // Smooth anchor navigation (skip enquiry CTAs — those open the modal).
   document.querySelectorAll('a[href^="#"]:not([data-enquire])').forEach((a) => {
     a.addEventListener('click', (e) => {
