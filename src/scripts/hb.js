@@ -307,6 +307,18 @@ function applyMq() {
 mq.addEventListener('change', applyMq);
 applyMq();
 
+// ---- full-bleed nature backgrounds: fade in once each image is decoded ----
+// Mirrors the reveal safety net: never leave a background invisible.
+$$('.hb-natbg-img').forEach((img) => {
+  const show = () => img.classList.add('is-loaded');
+  if (img.complete && img.naturalWidth > 0) show();
+  else {
+    img.addEventListener('load', show, { once: true });
+    img.addEventListener('error', show, { once: true }); // show LQIP-less rather than blank
+  }
+});
+setTimeout(() => $$('.hb-natbg-img').forEach((i) => i.classList.add('is-loaded')), 2200);
+
 // ---- certification badges: swap the text emblem for a real logo if one exists ----
 // Drop official logos at /assets/certs/<mark>.png (mgo/haccp/rmp/nz). If a file
 // is missing the styled text emblem stays — no broken image, no console error.

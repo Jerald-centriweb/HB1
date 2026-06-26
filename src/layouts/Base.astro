@@ -101,6 +101,20 @@ const orgSchema = {
         50% { opacity: 1; }
       }
 
+      /* Full-bleed nature backgrounds: slow drift + blur-up fade-in. */
+      @keyframes hb-kenburns {
+        from { transform: scale(1.02); }
+        to   { transform: scale(1.09); }
+      }
+      .hb-kb {
+        animation: hb-kenburns 28s ease-in-out infinite alternate;
+        transform-origin: center center;
+      }
+      .hb-natbg-img.is-loaded { opacity: 1 !important; }
+      @media (prefers-reduced-motion: reduce) {
+        .hb-kb { animation: none; }
+      }
+
       /* Enquiry form: let fields shrink inside the modal card (no mobile clip) */
       #hb-modal-card input,
       #hb-modal-card select,
