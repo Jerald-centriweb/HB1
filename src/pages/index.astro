@@ -69,7 +69,7 @@ const btnStyle = {
       </video>
       <!-- scrim over image + video so the headline stays legible and the section
            fades into the trust strip below (no hard seam) -->
-      <div aria-hidden="true" style="position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(8,6,3,.9) 0%,rgba(8,6,3,.56) 40%,rgba(8,6,3,.18) 66%,rgba(8,6,3,0) 90%),linear-gradient(0deg,#0b0907 0%,rgba(11,9,7,0) 42%),linear-gradient(180deg,rgba(8,6,3,.5) 0%,transparent 30%);"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(8,6,3,.9) 0%,rgba(8,6,3,.56) 40%,rgba(8,6,3,.18) 66%,rgba(8,6,3,0) 90%),linear-gradient(0deg,#0b0907 0%,rgba(11,9,7,.5) 14%,rgba(11,9,7,0) 46%),linear-gradient(180deg,rgba(8,6,3,.5) 0%,transparent 30%);"></div>
 
       <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;width:100%;">
         <div class="hb-hero-content" style="max-width:660px;">
@@ -104,7 +104,7 @@ const btnStyle = {
     <section id="story" class="hb-story" style="position:relative;overflow:hidden;display:flex;align-items:center;min-height:92vh;padding:clamp(96px,14vw,160px) clamp(18px,4vw,56px);">
       <NatureBg name="hero-valley" mobileName="hero-valley-portrait" kenburns={true}
         sizes="100vw"
-        scrim="background:linear-gradient(90deg,rgba(8,6,3,.9) 0%,rgba(8,6,3,.52) 44%,rgba(8,6,3,.18) 72%,rgba(8,6,3,0) 100%),linear-gradient(180deg,#0b0907 0%,rgba(11,9,7,0) 24%,rgba(11,9,7,0) 76%,#0b0907 100%);" />
+        scrim="background:linear-gradient(90deg,rgba(8,6,3,.9) 0%,rgba(8,6,3,.52) 44%,rgba(8,6,3,.18) 72%,rgba(8,6,3,0) 100%),linear-gradient(180deg,#0b0907 0%,rgba(11,9,7,.55) 9%,rgba(11,9,7,0) 32%,rgba(11,9,7,0) 68%,rgba(11,9,7,.55) 91%,#0b0907 100%);" />
       <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;width:100%;">
         <div style="max-width:600px;">
           <div data-reveal style="font-size:12px;letter-spacing:5px;color:#e0b552;font-weight:700;margin-bottom:22px;">{site.story.eyebrow}</div>
@@ -236,7 +236,7 @@ const btnStyle = {
     </section>
 
     <!-- ===== COMPARISON ===== -->
-    <section style="padding:clamp(70px,9vw,120px) clamp(18px,4vw,56px);background:#0b0907;">
+    <section style="padding:clamp(70px,9vw,120px) clamp(18px,4vw,56px);">
       <div style="max-width:1080px;margin:0 auto;">
         <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(26px,3.6vw,48px);text-align:center;margin:0 0 12px;">{site.compare.heading}</h2>
         <p data-reveal style="text-align:center;font-size:15px;color:#9c8f76;margin:0 0 48px;">{site.compare.sub}</p>
@@ -258,7 +258,7 @@ const btnStyle = {
     </section>
 
     <!-- ===== AOTEAROA MAP (sourcing / NZ identity) ===== -->
-    <section id="aotearoa" style="position:relative;overflow:hidden;padding:clamp(80px,11vw,150px) clamp(18px,4vw,56px);background:linear-gradient(180deg,#0b0907,#0e0b07 50%,#0b0907);text-align:center;">
+    <section id="aotearoa" style="position:relative;overflow:hidden;padding:clamp(80px,11vw,150px) clamp(18px,4vw,56px);text-align:center;">
       <!-- faint silver-fern watermark, centred (symmetric, never a corner block) -->
       <div aria-hidden="true" style="position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);opacity:.045;pointer-events:none;z-index:0;">
         <SilverFern size={680} />
@@ -275,7 +275,7 @@ const btnStyle = {
     </section>
 
     <!-- ===== QUALITY ===== -->
-    <section id="quality" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);background:#0b0907;overflow:hidden;">
+    <section id="quality" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);overflow:hidden;">
       <!-- Subtle honey backdrop. Toggled with the hero via the BACKDROP control;
            off by default on mobile. Heavily darkened so the seal/text stay crisp. -->
       <video
@@ -289,7 +289,7 @@ const btnStyle = {
         <source src="/assets/video/quality.mp4" type="video/mp4">
       </video>
       <!-- Darkening veil over the video: keeps the centred seal + copy legible. -->
-      <div id="hb-quality-veil" aria-hidden="true" style="display:none;position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 80% at 50% 32%,rgba(11,9,7,.22),rgba(11,9,7,.6) 72%),linear-gradient(180deg,#0b0907 0%,rgba(11,9,7,.3) 16%,rgba(11,9,7,.45) 84%,#0b0907 100%);"></div>
+      <div id="hb-quality-veil" aria-hidden="true" style="display:none;position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 80% at 50% 32%,rgba(11,9,7,.22),rgba(11,9,7,.6) 72%),linear-gradient(180deg,#0b0907 0%,rgba(11,9,7,.5) 9%,rgba(11,9,7,.28) 24%,rgba(11,9,7,.42) 78%,rgba(11,9,7,.6) 92%,#0b0907 100%);"></div>
       <div data-parallax="0.3" data-glow="1" style="position:absolute;left:-10%;top:-6%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.10),transparent 60%);z-index:1;"></div>
       <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;text-align:center;">
         <!-- Large centered MGO seal -->
@@ -360,7 +360,7 @@ const btnStyle = {
     </section>
 
     <!-- ===== FINAL CTA ===== -->
-    <section id="enquire" style="position:relative;padding:clamp(90px,12vw,170px) clamp(18px,4vw,56px);text-align:center;background:radial-gradient(120% 90% at 50% 0%,rgba(60,44,16,.65),transparent 60%),#0b0907;overflow:hidden;">
+    <section id="enquire" style="position:relative;padding:clamp(90px,12vw,170px) clamp(18px,4vw,56px);text-align:center;background:radial-gradient(120% 90% at 50% 0%,rgba(60,44,16,.42),transparent 62%);overflow:hidden;">
       <div data-parallax="0.4" style="position:absolute;inset:0;opacity:.4;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2296%22 viewBox=%220 0 56 96%22><g fill=%22none%22 stroke=%22%23d8ac4e%22 stroke-opacity=%220.10%22 stroke-width=%221%22><path d=%22M28 1L54 16v32L28 63 2 48V16z%22/></g></svg>');background-size:56px 96px;"></div>
       <div data-reveal style="position:relative;max-width:780px;margin:0 auto;">
         <img src="/assets/logo-filled.png" alt={site.brand.name} style="height:90px;width:auto;margin:0 auto 28px;display:block;filter:drop-shadow(0 10px 24px rgba(0,0,0,.6));">
@@ -375,7 +375,7 @@ const btnStyle = {
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer style="background:#070503;border-top:1px solid rgba(216,172,78,.14);padding:clamp(40px,5vw,64px) clamp(18px,4vw,56px) 36px;">
+    <footer style="background:linear-gradient(180deg,#0b0907,#070503 38%);padding:clamp(48px,6vw,72px) clamp(18px,4vw,56px) 36px;">
       <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;align-items:center;">
         <div style="display:flex;align-items:center;gap:13px;">
           <img src="/assets/logo-outline.png" alt="" style="height:54px;width:auto;">
