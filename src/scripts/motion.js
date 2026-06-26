@@ -350,123 +350,38 @@ if (!reduce) {
 
 // Pointer-reactive micro-interactions removed for a restrained, high-end feel. Motion is scroll-driven only.
 
-// ── SCROLL-SCRUBBED VIDEO (Apple technique) ───────────────────────────────────
-//
-// Each video is revealed only after 'loadedmetadata' fires. If the file is
-// missing or fails to load the element stays display:none — zero layout shift,
-// zero console errors.
-//
-// ▸ HERO background honey-flow video
-//   Drop file at: /public/assets/video/hero.mp4 (and hero.webm)
-//   It scrubs via currentTime as the hero section scrolls.
-//
-// ▸ TRANSITION video between #range and #fury
-//   Drop file at: /public/assets/video/transition.mp4 (and transition.webm)
-//   Placed in a pinned container; currentTime scrubs as you scroll into #fury.
-
-function initVideoScrub(videoEl, { trigger, start, end, scrub = 1, onReady } = {}) {
-  if (!videoEl) return;
-
-  // Keep hidden until metadata loads.
-  videoEl.style.display = 'none';
-  videoEl.muted = true;
-  videoEl.playsInline = true;
-  videoEl.preload = 'metadata';
-
-  let st = null;
-  let activated = false;
-
-  const activate = () => {
-    if (activated) return;         // run once only
-    if (!videoEl.duration) return; // safety
-    activated = true;
-    if (onReady) onReady(videoEl);
-    // Subtle ambient loop (no scroll-scrubbing). Visibility + playback are
-    // controlled by the preview backdrop toggle (see below).
-    videoEl.loop = true;
-    videoEl._hbReady = true;
-    if (window.__hbApplyBg) window.__hbApplyBg();
-    ScrollTrigger.refresh();
-  };
-
-  videoEl.addEventListener('loadedmetadata', activate);
-  // If metadata already loaded (cached / fast local serve) the event may have
-  // fired before this listener attached — activate immediately in that case.
-  if (videoEl.readyState >= 1) activate();
-  videoEl.addEventListener('error', () => {
-    // File missing or corrupt: keep display:none silently.
-    videoEl.style.display = 'none';
-  }, { once: true });
-
-  return () => { if (st) st.kill(); };
-}
-
-// Hero video.
-const heroVideo = document.getElementById('hb-hero-video');
-if (heroVideo) {
-  initVideoScrub(heroVideo, {
-    trigger: '.hb-scene',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: 1.5,
-  });
-}
-
-// Quality-section ambient backdrop (subtle honey loop, darkened by a veil).
-// Shares the BACKDROP toggle with the hero video.
-const qualityVideo = document.getElementById('hb-quality-video');
-if (qualityVideo) {
-  initVideoScrub(qualityVideo, {});
-}
-
-// Transition video removed: the mid-page band was intrusive and its scrub was
-// the source of the patchy feel. Its markup is gone from index.astro and the
-// transition.mp4 file is no longer shipped.
-
 // ── Recalculate trigger positions once fonts/images settle ───────────────────
 window.addEventListener('load', () => ScrollTrigger.refresh());
 
-// ── Preview backdrop toggle: show/hide the hero honey video (persisted) ───────
-const heroVid = document.getElementById('hb-hero-video');
-const bgToggle = document.getElementById('hb-bg-toggle');
-const bgLabel = document.getElementById('hb-bg-toggle-label');
-const bgDot = document.getElementById('hb-bg-toggle-dot');
-// Default the honey backdrop OFF on mobile (save data/battery); desktop on.
-// An explicit toggle choice (localStorage) always wins.
-const _bgDefault = window.innerWidth <= 900 ? 'off' : 'on';
-const qualityVid = document.getElementById('hb-quality-video');
-const qualityVeil = document.getElementById('hb-quality-veil');
-let bgVideoOn = (localStorage.getItem('hb-bg-video') || _bgDefault) !== 'off';
-function setBackdropVideo(vid, on) {
-  if (!vid || !vid._hbReady) return;
-  if (on && !reduce) {
-    vid.style.display = '';
-    const p = vid.play();
-    if (p && p.catch) p.catch(() => {});
-  } else {
-    vid.pause();
-    vid.style.display = 'none';
+// ── AMBIENT BACKGROUND VIDEOS (hero + quality) ───────────────────────────────
+// Muted autoplay loops — they just play, no on/off control. Paused under
+// reduced-motion and on small screens (saves data/battery); the still poster
+// carries those cases.
+(function () {
+  const vids = ['hb-hero-video', 'hb-quality-video']
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+  const qualityVeil = document.getElementById('hb-quality-veil');
+  function apply() {
+    const on = !reduce && window.innerWidth > 900;
+    vids.forEach((v) => {
+      if (on) {
+        v.style.display = '';
+        v.muted = true;
+        v.loop = true;
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {});
+      } else {
+        v.pause();
+        v.style.display = 'none';
+      }
+    });
+    if (qualityVeil) qualityVeil.style.display = on ? '' : 'none';
   }
-}
-function applyBg() {
-  setBackdropVideo(heroVid, bgVideoOn);
-  setBackdropVideo(qualityVid, bgVideoOn);
-  // The Quality veil only matters when its video is visible.
-  if (qualityVeil) {
-    qualityVeil.style.display = (bgVideoOn && !reduce && qualityVid && qualityVid._hbReady) ? '' : 'none';
-  }
-  if (bgLabel) bgLabel.textContent = 'BACKDROP: ' + (bgVideoOn ? 'ON' : 'OFF');
-  if (bgDot) {
-    bgDot.style.background = bgVideoOn ? '#f3cd6b' : '#5a5142';
-    bgDot.style.boxShadow = bgVideoOn ? '0 0 8px #f3cd6b' : 'none';
-  }
-}
-window.__hbApplyBg = applyBg;
-if (bgToggle) {
-  bgToggle.addEventListener('click', () => {
-    bgVideoOn = !bgVideoOn;
-    localStorage.setItem('hb-bg-video', bgVideoOn ? 'on' : 'off');
-    applyBg();
-  });
-}
-applyBg();
+  vids.forEach((v) =>
+    v.addEventListener('error', () => { v.style.display = 'none'; }, { once: true })
+  );
+  apply();
+  window.addEventListener('resize', apply);
+  window.addEventListener('load', apply);
+})();
