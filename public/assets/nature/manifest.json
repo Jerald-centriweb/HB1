@@ -107,5 +107,17 @@
       480
     ],
     "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAABQAwCdASoUAAsAPu1kqk4ppaQiMAgBMB2JZQBCAAHdxDsYAAD+8Cb3rtJ6dVv0WJ7pk13Y/j6dHxUBCgVzjB4cBPgNXUAA"
+  },
+  "hero-dipper": {
+    "src": "Perfect_can_you_zoom_out (video B frame)",
+    "width": 1280,
+    "height": 720,
+    "orientation": "landscape",
+    "widths": [
+      1280,
+      768,
+      480
+    ],
+    "lqip": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAABQBACdASoUAAsAPu1iqU2ppaOiMAgBMB2JYgCdMoADP6SVWEwUoUEVYXEAAP7svUpiXnupjtOqvJK8AfNPBXSwtpGy+qEq+h45FwDB3jLQocMlAaJVJLd1eZgzpACaPAe/Nk1ZRik8DeXFLEMdT+eJxzHO/l+Xwb4t8uWTPvHYSGhGgAAAAA=="
   }
 }
