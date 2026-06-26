@@ -284,7 +284,7 @@ const btnStyle = {
         <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(30px,4vw,56px);line-height:1.04;margin:0;letter-spacing:-.5px;">{site.nz.mapHeading}</h2>
         <p data-reveal style="font-size:clamp(15px,1.3vw,18px);color:#b6a98f;max-width:600px;margin:22px auto 0;line-height:1.7;">{site.nz.mapBody}</p>
         <div data-reveal style="display:flex;justify-content:center;margin-top:clamp(36px,5vw,56px);">
-          <NZMap />
+          <NZMap regions={[{ label: 'New Plymouth', x: 141, y: 183 }]} />
         </div>
       </div>
     </section>

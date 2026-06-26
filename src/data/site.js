@@ -41,11 +41,11 @@ export const site = {
   nz: {
     eyebrow: 'PROUDLY NEW ZEALAND OWNED',
     heading: 'Born in Aotearoa.',
-    body: 'New Zealand owned and New Zealand made. Our Mānuka comes from remote corners of Aotearoa most people never see, from the East Cape and the Coromandel down to the wild West Coast and Southland. Worked by beekeepers who have known this whenua for generations. This is honey with a home, and we are proud of where it comes from.',
+    body: 'New Zealand owned and New Zealand made. Our Mānuka is single origin, drawn from the land around New Plymouth in the Taranaki region of Aotearoa and worked by local beekeepers who know this whenua well. This is honey with a home, and we are proud of where it comes from.',
     stamp: '100% NZ OWNED · MADE IN AOTEAROA',
     mapEyebrow: 'WHERE IT COMES FROM · NŌ HEA',
-    mapHeading: 'Sourced across Aotearoa.',
-    mapBody: 'We work with trusted apiaries the length of the country, following the Mānuka bloom from the warm North down to the deep South. Every jar traces back to the region, the batch and the hive it came from.',
+    mapHeading: 'Single origin, from New Plymouth.',
+    mapBody: 'Every jar traces back to one place: the Mānuka country around New Plymouth, in the Taranaki region of Aotearoa. Single origin, fully traceable, from this whenua to your shelf.',
   },
 
   trust: [
