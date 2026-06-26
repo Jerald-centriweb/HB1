@@ -333,7 +333,7 @@ const btnStyle = {
         {site.quality.certs.map((c) => (
           <div class="hb-cert" style="background:linear-gradient(180deg,#141009,#0c0905);border:1px solid rgba(216,172,78,.18);border-radius:8px;padding:30px 22px;text-align:center;transition:transform .35s,border-color .35s,box-shadow .35s;">
             <div class="hb-cert-emblem" style="position:relative;width:90px;height:90px;margin:0 auto 14px;">
-              <img class="hb-cert-logo" src={`/assets/certs/${c.mark.toLowerCase()}.png`} alt={c.title} onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));">
+              <img class="hb-cert-logo" src={`/assets/certs/${c.mark.toLowerCase()}.png?v=2`} alt={c.title} onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));">
               <div class="hb-cert-mark" style="width:100%;height:100%;border-radius:50%;border:1.5px solid rgba(243,205,107,.5);background:radial-gradient(circle at 50% 32%,rgba(243,205,107,.16),#0d0a06);box-shadow:inset 0 0 14px rgba(243,205,107,.12),0 8px 20px rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;font-family:'Archivo Black';font-size:17px;"><span style="background:linear-gradient(180deg,#f9e29a,#d99f2c);-webkit-background-clip:text;background-clip:text;color:transparent;">{c.mark}</span></div>
             </div>
             <div style="font-size:13px;font-weight:800;letter-spacing:.8px;color:#f4ede0;">{c.title}</div>
