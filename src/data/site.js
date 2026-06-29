@@ -28,9 +28,9 @@ export const site = {
   },
 
   story: {
-    eyebrow: 'WHERE IT COMES FROM · NŌ HEA',
-    heading: 'Born in Aotearoa.',
-    body: 'New Zealand owned, New Zealand made. Our Mānuka is single origin, drawn from the land around New Plymouth in Taranaki and worked by local beekeepers who know this whenua well. Every batch is tested before it leaves us. This is honey we would happily put on our own table, and we are proud of where it comes from.',
+    eyebrow: 'WHERE IT COMES FROM',
+    heading: 'Born in Aotearoa New Zealand.',
+    body: 'New Zealand owned, New Zealand made. Our Mānuka is single origin, drawn from the land around Palmerston North and worked by local beekeepers who know it well. Every batch is tested before it leaves us. This is honey we would happily put on our own table, and we are proud of where it comes from.',
     stats: [
       { value: '100%', label: 'NEW ZEALAND SOURCED' },
       { value: '829+', label: 'PEAK CERTIFIED MGO' },
@@ -40,17 +40,17 @@ export const site = {
 
   nz: {
     eyebrow: 'PROUDLY NEW ZEALAND OWNED',
-    heading: 'Born in Aotearoa.',
-    body: 'New Zealand owned and New Zealand made. Our Mānuka is single origin, drawn from the land around New Plymouth in the Taranaki region of Aotearoa and worked by local beekeepers who know this whenua well. This is honey with a home, and we are proud of where it comes from.',
-    stamp: '100% NZ OWNED · MADE IN AOTEAROA',
-    mapEyebrow: 'WHERE IT COMES FROM · NŌ HEA',
-    mapHeading: 'Single origin, from New Plymouth.',
-    mapBody: 'Every jar traces back to one place: the Mānuka country around New Plymouth, in the Taranaki region of Aotearoa. Single origin, fully traceable, from this whenua to your shelf.',
+    heading: 'Born and made in New Zealand.',
+    body: 'New Zealand owned and New Zealand made. Our Mānuka is single origin, drawn from the land around Palmerston North and worked by local beekeepers who know it well. This is honey with a home, and we are proud of where it comes from.',
+    stamp: '100% NEW ZEALAND OWNED · MADE IN NEW ZEALAND',
+    mapEyebrow: 'WHERE IT COMES FROM',
+    mapHeading: 'Single origin, from Palmerston North.',
+    mapBody: 'Every jar traces back to one place: the Mānuka country around Palmerston North, New Zealand. Single origin, fully traceable, from our land to your shelf.',
   },
 
   trust: [
     { n: '01', title: 'CERTIFIED STRENGTH', body: 'Independently graded and verified MGO. Not a guess.' },
-    { n: '02', title: 'PURE NZ ORIGIN', body: 'Remote New Zealand land. No compromises on where it comes from.' },
+    { n: '02', title: 'PURE NEW ZEALAND ORIGIN', body: 'Remote New Zealand land. No compromises on where it comes from.' },
     { n: '03', title: 'FULLY TRACEABLE', body: 'Every batch tracked from hive to jar.' },
     { n: '04', title: 'TESTED AND VERIFIED', body: 'Checked for purity and authenticity. Every time.' },
     { n: '05', title: 'REAL FLAVOUR', body: 'Bold, strong and full of it. This is proper Mānuka.' },
@@ -97,7 +97,7 @@ export const site = {
     ],
     tags: ['PRE-WORKOUT', 'POST-WORKOUT', 'TRAVEL', 'GYM BAG', 'OUTDOORS'],
     cta: { label: 'EXPLORE FURY →', href: '#enquire' },
-    note: '15 × 15g sachets · Net 225g · 100% NZ Mānuka',
+    note: '15 × 15g sachets · Net 225g · 100% New Zealand Mānuka',
   },
 
   compare: {
@@ -130,7 +130,7 @@ export const site = {
     heading: 'EVERY BATCH IS TESTED<br>BEFORE IT SHIPS.',
     body: 'Before anything leaves us, it is independently tested for purity, authenticity and MGO strength. Every jar traces back to the batch and the hive it came from. We do not ship anything we would not eat ourselves. Pure Mānuka honey, naturally rich and exactly the way nature made it.',
     steps: [
-      { n: '01', title: 'HIVE', desc: 'Remote NZ apiaries' },
+      { n: '01', title: 'HIVE', desc: 'Remote New Zealand apiaries' },
       { n: '02', title: 'HARVEST', desc: 'Single origin batches' },
       { n: '03', title: 'TESTED', desc: 'Independent lab MGO' },
       { n: '04', title: 'PACKED', desc: 'Sealed in New Zealand' },
@@ -140,7 +140,7 @@ export const site = {
       { mark: 'MGO', title: 'CERTIFIED MGO', desc: 'Independently graded strength' },
       { mark: 'HACCP', title: 'FOOD SAFE', desc: 'HACCP based controls' },
       { mark: 'RMP', title: 'RMP ASSURED', desc: 'Risk managed programme' },
-      { mark: 'NZ', title: 'NEW ZEALAND MADE', desc: 'Sourced and packed in NZ' },
+      { mark: 'NZ', title: 'NEW ZEALAND MADE', desc: 'Sourced and packed in New Zealand' },
     ],
   },
 
@@ -187,7 +187,7 @@ export const site = {
       { label: 'WHOLESALE', href: '#trade' },
       { label: 'CONTACT', href: '#enquire' },
     ],
-    proud: 'Proudly New Zealand owned · Made in Aotearoa',
+    proud: 'Proudly New Zealand owned · Made in New Zealand',
     copyright: '© 2026 Honey Badgers International · Product of New Zealand',
     disclaimer: 'Independently tested and certified · Not intended to diagnose, treat or cure any disease.',
   },

@@ -49,11 +49,6 @@ const {
     </radialGradient>
   </defs>
 
-  <!--
-    NORTH ISLAND — 36 anchor points from real GeoJSON (Natural Earth / world.geo.json)
-    Traces clockwise: upper Northland → Coromandel → East Cape → Hawke Bay →
-    Cape Palliser (SE tip) → Wellington → W coast → Taranaki → Auckland → Cape Reinga
-  -->
   <path
     aria-hidden="true"
     fill="rgba(216,172,78,0.07)"
@@ -73,12 +68,6 @@ const {
     "
   />
 
-  <!--
-    SOUTH ISLAND — 30 anchor points from same dataset
-    Traces clockwise: Nelson/Farewell top → Marlborough → Canterbury →
-    Timaru → Dunedin → Bluff (S tip) → Fiordland (W coast) → Westport →
-    back to Nelson
-  -->
   <path
     aria-hidden="true"
     fill="rgba(216,172,78,0.07)"
@@ -96,10 +85,6 @@ const {
     "
   />
 
-  <!--
-    STEWART ISLAND — small island south of Foveaux Strait (~168.1°E, 47.0°S)
-    x = (168.1 - 166) × 16.08 + 5 ≈ 38.8,  y = (47.0 - 34) × 34.81 + 5 ≈ 457.5
-  -->
   <ellipse
     aria-hidden="true"
     cx="39"
@@ -111,14 +96,10 @@ const {
     stroke-width="1.4"
   />
 
-  <!-- REGION MARKERS — pulsing gold dots with uppercase labels -->
   {regions.map(({ label, x, y }) => (
     <g class="nzmap-region" aria-label={label}>
-      <!-- Halo glow -->
       <circle cx={x} cy={y} r="9" fill="url(#nzmap-dot-halo)" aria-hidden="true" />
-      <!-- Dot -->
       <circle cx={x} cy={y} r="3.5" fill="#d8ac4e" class="nzmap-dot" aria-hidden="true" />
-      <!-- Label -->
       <text
         x={x}
         y={y - 10}

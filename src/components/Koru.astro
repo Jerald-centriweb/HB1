@@ -43,41 +43,8 @@ const {
   class:list={['koru', className]}
   style={`opacity:${opacity};display:block;`}
 >
-  <!--
-    Koru spiral — single continuous open path.
 
-    The geometry: imagine a nautilus cross-section drawn as a line.
-    - The spiral starts at the tip of the stalk (top centre-right).
-    - It sweeps outward, looping around a central bulb.
-    - The stalk exits the outer loop and rises cleanly.
 
-    Path breakdown (all coordinates in viewBox 0 0 100 100):
-      Centre of spiral bulb: (48, 58)
-      Inner radius: ~9  (tight inner loop)
-      Outer loop radius: ~22
-
-    The path traces:
-      1. Stalk tip at (62, 8) — top of the piece
-      2. Stalk curves down-left to meet the outer spiral entry at (70, 58)
-      3. Outer arc sweeps counter-clockwise (right→bottom→left) to (48, 36)
-      4. Continues inward, spiralling to the inner bulb tangent at (48, 49)
-      5. Inner circle closes the bulb (CCW, small radius ~9)
-      6. Path re-opens at (48, 49) and the inner loop terminates at (57, 58)
-         (meeting point where spiral naturally lands before folding in)
-
-    This creates the characteristic koru silhouette:
-      - Round tight bulb at the base
-      - One sweeping outer loop
-      - Stalk rising from the loop exit
-  -->
-
-  <!--
-    Single-path koru:
-    The stalk descends from (62,8), curves into an outer loop around (48,58),
-    the loop spirals inward to the bulb, completing the closed inner circle.
-  -->
-
-  <!-- Outer stalk and spiral body -->
   <path
     d="
       M62,8

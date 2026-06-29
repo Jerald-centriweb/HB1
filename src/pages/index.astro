@@ -20,10 +20,8 @@ const btnStyle = {
 <Base>
   <div style="position:relative;width:100%;background:#0b0907;">
 
-    <!-- atmosphere tint overlay (tweakable) -->
     <div id="hb-atmos" style="position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:soft-light;opacity:0;transition:opacity .6s,background .6s;"></div>
 
-    <!-- ===== NAV ===== -->
     <nav id="hb-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(18px,4vw,56px);transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent;">
       <a href="#top" style="display:flex;align-items:center;gap:12px;">
         <img src="/assets/logo-outline.png" alt={site.brand.name} style="height:46px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));">
@@ -41,7 +39,6 @@ const btnStyle = {
       <button class="hb-burger" style="display:none;background:none;border:1px solid rgba(216,172,78,.4);color:#f3cd6b;padding:9px 12px;border-radius:2px;font-size:13px;letter-spacing:1px;cursor:pointer;">MENU</button>
     </nav>
 
-    <!-- mobile drawer -->
     <div id="hb-drawer" style="position:fixed;z-index:99;top:0;right:0;bottom:0;width:min(80vw,320px);background:#0c0905;border-left:1px solid rgba(216,172,78,.2);flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:transform .4s cubic-bezier(.16,1,.3,1);box-shadow:-20px 0 60px rgba(0,0,0,.6);display:flex;transform:translateX(105%);">
       {site.nav.map((item) => (
         <a href={item.href} data-close-nav style="font-size:18px;letter-spacing:2px;font-weight:700;">{item.label}</a>
@@ -49,11 +46,7 @@ const btnStyle = {
       <a href="#enquire" data-enquire style="font-size:15px;letter-spacing:2px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:14px 26px;border-radius:2px;">ENQUIRE TO BUY</a>
     </div>
 
-    <!-- ===== HERO (full-bleed cinematic, blended) ===== -->
     <section id="top" class="hb-hero" style="position:relative;overflow:hidden;display:flex;align-items:center;min-height:100vh;min-height:100svh;padding:clamp(118px,16vh,168px) clamp(18px,4vw,56px) clamp(80px,12vh,120px);">
-      <!-- Full-bleed product scene (dripping jar). Swapped for the dipper video
-           the moment /assets/video/hero-dipper.mp4 exists (auto-activates via the
-           BACKDROP control); until then this premium still carries the hero. -->
       <NatureBg name="hero-dipper" eager={true} kenburns={true}
         sizes="100vw" />
       <video
@@ -67,9 +60,7 @@ const btnStyle = {
       >
         <source src="/assets/video/hero-dipper.mp4" type="video/mp4">
       </video>
-      <!-- scrim over image + video so the headline stays legible and the section
-           fades into the trust strip below (no hard seam) -->
-      <div aria-hidden="true" style="position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(8,6,3,.12) 0%,rgba(8,6,3,.08) 34%,rgba(8,6,3,.5) 64%,rgba(8,6,3,.88) 100%),linear-gradient(0deg,#0b0907 0%,rgba(11,9,7,.45) 13%,rgba(11,9,7,0) 44%),linear-gradient(180deg,rgba(8,6,3,.55) 0%,transparent 28%);"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(8,6,3,0) 0%,rgba(8,6,3,.04) 28%,rgba(8,6,3,.16) 45%,rgba(8,6,3,.38) 60%,rgba(8,6,3,.62) 74%,rgba(8,6,3,.82) 88%,rgba(8,6,3,.9) 100%),linear-gradient(0deg,#0b0907 0%,rgba(11,9,7,.45) 13%,rgba(11,9,7,0) 44%),linear-gradient(180deg,rgba(8,6,3,.55) 0%,transparent 28%);"></div>
 
       <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;width:100%;">
         <div class="hb-hero-content" style="max-width:600px;margin-left:auto;">
@@ -86,7 +77,6 @@ const btnStyle = {
             <a href={site.hero.ctaPrimary.href} data-enquire style="font-size:13px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:16px 30px;border-radius:2px;box-shadow:0 12px 34px -10px rgba(243,205,107,.5);">{site.hero.ctaPrimary.label}</a>
             <a href={site.hero.ctaSecondary.href} style="font-size:13px;letter-spacing:1.5px;font-weight:700;color:#f3cd6b;border:1px solid rgba(216,172,78,.55);padding:16px 30px;border-radius:2px;background:rgba(11,9,7,.3);backdrop-filter:blur(4px);">{site.hero.ctaSecondary.label}</a>
           </div>
-          <!-- Small MGO seal trust mark -->
           <div style="display:flex;align-items:center;gap:12px;margin-top:30px;">
             <img src="/assets/mgo-seal.png?v=2" alt="MGO Certified" style="height:84px;width:auto;filter:drop-shadow(0 6px 16px rgba(243,205,107,.4));flex-shrink:0;">
             <div>
@@ -100,7 +90,6 @@ const btnStyle = {
       <div id="hb-scroll-hint" style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:4;font-size:10px;letter-spacing:3px;color:#cdbfa3;display:flex;flex-direction:column;align-items:center;gap:10px;transition:opacity .4s;">SCROLL<span style="position:relative;display:block;width:1px;height:42px;background:linear-gradient(rgba(216,172,78,.45),rgba(216,172,78,.04));"><span style="position:absolute;left:50%;top:0;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#f3cd6b;box-shadow:0 0 8px #f3cd6b;animation:hb-scrolldot 1.9s cubic-bezier(.7,0,.3,1) infinite;"></span></span></div>
     </section>
 
-    <!-- ===== STORY (full-bleed NZ landscape, blended) ===== -->
     <section id="story" class="hb-story" style="position:relative;overflow:hidden;display:flex;align-items:center;min-height:92vh;padding:clamp(96px,14vw,160px) clamp(18px,4vw,56px);">
       <NatureBg name="hero-valley" mobileName="hero-valley-portrait" kenburns={true}
         sizes="100vw"
@@ -123,7 +112,6 @@ const btnStyle = {
       </div>
     </section>
 
-    <!-- ===== TRUST STRIP ===== -->
     <section style="position:relative;z-index:1;padding:clamp(8px,2vw,24px) 0;">
       <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);" class="hb-trust">
         {site.trust.map((t, i) => (
@@ -136,7 +124,6 @@ const btnStyle = {
       </div>
     </section>
 
-    <!-- ===== RANGE (interactive product selector) ===== -->
     <section id="range" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);overflow:hidden;">
       <div data-parallax="0.3" data-glow="1" style="position:absolute;right:-12%;top:14%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.10),transparent 62%);z-index:0;"></div>
       <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;">
@@ -193,7 +180,6 @@ const btnStyle = {
     </section>
 
 
-    <!-- ===== FURY ===== -->
     <section id="fury" style="position:relative;padding:clamp(80px,10vw,150px) clamp(18px,4vw,56px);overflow:hidden;">
       <div data-parallax="0.4" style="position:absolute;inset:0;z-index:0;opacity:.6;background:linear-gradient(115deg,transparent 40%,rgba(243,205,107,.05) 50%,transparent 60%);"></div>
       <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,80px);align-items:center;" class="hb-fury-grid">
@@ -235,7 +221,6 @@ const btnStyle = {
       </div>
     </section>
 
-    <!-- ===== COMPARISON ===== -->
     <section style="padding:clamp(70px,9vw,120px) clamp(18px,4vw,56px);">
       <div style="max-width:1080px;margin:0 auto;">
         <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(26px,3.6vw,48px);text-align:center;margin:0 0 12px;">{site.compare.heading}</h2>
@@ -257,9 +242,7 @@ const btnStyle = {
       </div>
     </section>
 
-    <!-- ===== AOTEAROA MAP (sourcing / NZ identity) ===== -->
-    <section id="aotearoa" style="position:relative;overflow:hidden;padding:clamp(80px,11vw,150px) clamp(18px,4vw,56px);text-align:center;">
-      <!-- faint silver-fern watermark, centred (symmetric, never a corner block) -->
+    <section id="origin" style="position:relative;overflow:hidden;padding:clamp(80px,11vw,150px) clamp(18px,4vw,56px);text-align:center;">
       <div aria-hidden="true" style="position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);opacity:.045;pointer-events:none;z-index:0;">
         <SilverFern size={680} />
       </div>
@@ -269,15 +252,12 @@ const btnStyle = {
         <h2 data-reveal style="font-family:'Archivo Black';font-size:clamp(30px,4vw,56px);line-height:1.04;margin:0;letter-spacing:-.5px;">{site.nz.mapHeading}</h2>
         <p data-reveal style="font-size:clamp(15px,1.3vw,18px);color:#b6a98f;max-width:600px;margin:22px auto 0;line-height:1.7;">{site.nz.mapBody}</p>
         <div data-reveal style="display:flex;justify-content:center;margin-top:clamp(36px,5vw,56px);">
-          <NZMap regions={[{ label: 'New Plymouth', x: 141, y: 183 }]} />
+          <NZMap regions={[{ label: 'Palmerston North', x: 152, y: 225 }]} />
         </div>
       </div>
     </section>
 
-    <!-- ===== QUALITY ===== -->
     <section id="quality" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);overflow:hidden;">
-      <!-- Subtle honey backdrop. Toggled with the hero via the BACKDROP control;
-           off by default on mobile. Heavily darkened so the seal/text stay crisp. -->
       <video
         id="hb-quality-video"
         muted
@@ -288,11 +268,9 @@ const btnStyle = {
       >
         <source src="/assets/video/quality.mp4" type="video/mp4">
       </video>
-      <!-- Darkening veil over the video: keeps the centred seal + copy legible. -->
       <div id="hb-quality-veil" aria-hidden="true" style="display:none;position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 80% at 50% 32%,rgba(11,9,7,.22),rgba(11,9,7,.6) 72%),linear-gradient(180deg,#0b0907 0%,rgba(11,9,7,.5) 9%,rgba(11,9,7,.28) 24%,rgba(11,9,7,.42) 78%,rgba(11,9,7,.6) 92%,#0b0907 100%);"></div>
       <div data-parallax="0.3" data-glow="1" style="position:absolute;left:-10%;top:-6%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.10),transparent 60%);z-index:1;"></div>
       <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;text-align:center;">
-        <!-- Large centered MGO seal -->
         <div data-reveal style="display:flex;justify-content:center;margin-bottom:28px;">
           <img src="/assets/mgo-seal.png?v=2" alt="MGO Certified" style="height:clamp(128px,17vw,168px);width:auto;filter:drop-shadow(0 0 30px rgba(243,205,107,.4)) drop-shadow(0 14px 26px rgba(0,0,0,.5));">
         </div>
@@ -301,7 +279,6 @@ const btnStyle = {
         <p data-reveal style="font-size:clamp(15px,1.3vw,18px);color:#b6a98f;max-width:660px;margin:24px auto 0;line-height:1.7;">{site.quality.body}</p>
       </div>
 
-      <!-- traceability stepper -->
       <div data-reveal class="hb-trace" style="position:relative;z-index:2;max-width:1080px;margin:clamp(50px,6vw,76px) auto 0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;">
         <div class="hb-trace-line" style="position:absolute;top:19px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(216,172,78,.45),transparent);"></div>
         {site.quality.steps.map((step) => (
@@ -313,13 +290,16 @@ const btnStyle = {
         ))}
       </div>
 
-      <!-- certification tiles -->
       <div data-reveal class="hb-certs" style="position:relative;z-index:2;max-width:1080px;margin:clamp(46px,5vw,64px) auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
         {site.quality.certs.map((c) => (
           <div class="hb-cert" style="background:linear-gradient(180deg,#141009,#0c0905);border:1px solid rgba(216,172,78,.18);border-radius:8px;padding:30px 22px;text-align:center;transition:transform .35s,border-color .35s,box-shadow .35s;">
-            <div class="hb-cert-emblem" style="position:relative;width:90px;height:90px;margin:0 auto 14px;">
-              <img class="hb-cert-logo" src={`/assets/certs/${c.mark.toLowerCase()}.png?v=2`} alt={c.title} onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));">
-              <div class="hb-cert-mark" style="width:100%;height:100%;border-radius:50%;border:1.5px solid rgba(243,205,107,.5);background:radial-gradient(circle at 50% 32%,rgba(243,205,107,.16),#0d0a06);box-shadow:inset 0 0 14px rgba(243,205,107,.12),0 8px 20px rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;font-family:'Archivo Black';font-size:17px;"><span style="background:linear-gradient(180deg,#f9e29a,#d99f2c);-webkit-background-clip:text;background-clip:text;color:transparent;">{c.mark}</span></div>
+            <div class="hb-cert-emblem" style="position:relative;width:88px;height:88px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(243,205,107,.42);background:radial-gradient(circle at 50% 30%,rgba(243,205,107,.14),#0d0a06 72%);box-shadow:inset 0 0 16px rgba(243,205,107,.12),0 10px 22px rgba(0,0,0,.5);">
+              <span aria-hidden="true" style="position:absolute;inset:6px;border-radius:50%;border:1px solid rgba(243,205,107,.16);"></span>
+              {c.mark === 'NZ' ? (
+                <SilverFern size={26} />
+              ) : (
+                <span style="font-family:'Archivo Black';font-size:19px;letter-spacing:.5px;background:linear-gradient(180deg,#f9e29a,#d99f2c);-webkit-background-clip:text;background-clip:text;color:transparent;">{c.mark}</span>
+              )}
             </div>
             <div style="font-size:13px;font-weight:800;letter-spacing:.8px;color:#f4ede0;">{c.title}</div>
             <div style="font-size:12px;color:#8a7e66;margin-top:6px;line-height:1.45;">{c.desc}</div>
@@ -328,7 +308,6 @@ const btnStyle = {
       </div>
     </section>
 
-    <!-- ===== TRADE ===== -->
     <section id="trade" style="position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px);overflow:hidden;">
       <div data-parallax="0.3" data-glow="1" style="position:absolute;right:-8%;top:-10%;width:46vw;height:46vw;max-width:560px;max-height:560px;border-radius:50%;background:radial-gradient(circle,rgba(216,172,78,.1),transparent 60%);z-index:0;"></div>
       <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto;">
@@ -359,7 +338,6 @@ const btnStyle = {
       </div>
     </section>
 
-    <!-- ===== FINAL CTA ===== -->
     <section id="enquire" style="position:relative;padding:clamp(90px,12vw,170px) clamp(18px,4vw,56px);text-align:center;background:radial-gradient(120% 90% at 50% 0%,rgba(60,44,16,.42),transparent 62%);overflow:hidden;">
       <div data-parallax="0.4" style="position:absolute;inset:0;opacity:.4;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2296%22 viewBox=%220 0 56 96%22><g fill=%22none%22 stroke=%22%23d8ac4e%22 stroke-opacity=%220.10%22 stroke-width=%221%22><path d=%22M28 1L54 16v32L28 63 2 48V16z%22/></g></svg>');background-size:56px 96px;"></div>
       <div data-reveal style="position:relative;max-width:780px;margin:0 auto;">
@@ -374,7 +352,6 @@ const btnStyle = {
       </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
     <footer style="background:linear-gradient(180deg,#0b0907,#070503 38%);padding:clamp(48px,6vw,72px) clamp(18px,4vw,56px) 36px;">
       <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;align-items:center;">
         <div style="display:flex;align-items:center;gap:13px;">
@@ -395,31 +372,42 @@ const btnStyle = {
       </div>
     </footer>
 
-    <!-- ===== ENQUIRY MODAL ===== -->
-    <div id="hb-modal" data-close-enquire style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(6,4,2,.55);backdrop-filter:blur(10px) saturate(1.2);-webkit-backdrop-filter:blur(10px) saturate(1.2);transition:opacity .35s;opacity:0;pointer-events:none;">
-      <div id="hb-modal-card" style="position:relative;width:min(520px,100%);max-height:90vh;overflow:auto;border-radius:18px;padding:34px clamp(22px,4vw,38px);background:linear-gradient(155deg,rgba(34,26,14,.72),rgba(12,9,6,.78));border:1px solid rgba(243,205,107,.28);box-shadow:0 40px 90px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(26px) saturate(1.5);-webkit-backdrop-filter:blur(26px) saturate(1.5);transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .35s;transform:translateY(26px) scale(.97);opacity:0;">
-        <div style="position:absolute;inset:0;border-radius:18px;background:linear-gradient(140deg,rgba(255,255,255,.10),rgba(255,255,255,0) 45%);pointer-events:none;"></div>
-        <button data-close-enquire style="position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#f4ede0;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
-        <div style="position:relative;">
-          <img src="/assets/logo-outline.png" alt="" style="height:50px;width:auto;margin-bottom:18px;">
-          <div style="font-size:11px;letter-spacing:4px;color:#f3cd6b;font-weight:700;margin-bottom:10px;">{site.modal.eyebrow}</div>
-          <h3 style="font-family:'Archivo Black';font-size:clamp(22px,3vw,30px);margin:0 0 8px;line-height:1.05;">{site.modal.heading}</h3>
-          <p style="font-size:14px;color:#cdbfa3;line-height:1.6;margin:0 0 22px;">{site.modal.body}</p>
-          <div style="display:grid;gap:12px;">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="hb-modal-row">
-              <input id="hb-enquire-name" placeholder={site.modal.placeholderName} style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;color:#f4ede0;font-family:inherit;font-size:14px;outline:none;">
-              <input id="hb-enquire-email" placeholder={site.modal.placeholderEmail} style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;color:#f4ede0;font-family:inherit;font-size:14px;outline:none;">
+    <div id="hb-modal" data-close-enquire style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,3,1,.66);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);transition:opacity .35s;opacity:0;pointer-events:none;">
+      <div id="hb-modal-card" style="position:relative;width:min(500px,100%);max-height:90vh;overflow:auto;border-radius:14px;padding:38px clamp(24px,4vw,40px) 32px;background:linear-gradient(180deg,#15100a,#0c0906);border:1px solid rgba(216,172,78,.22);box-shadow:0 36px 90px -34px rgba(0,0,0,.9);transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .35s;transform:translateY(22px) scale(.985);opacity:0;">
+        <span aria-hidden="true" style="position:absolute;top:0;left:38px;right:38px;height:1px;background:linear-gradient(90deg,transparent,rgba(216,172,78,.55),transparent);"></span>
+        <button data-close-enquire aria-label="Close" style="position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:50%;border:1px solid rgba(216,172,78,.28);background:transparent;color:#cdbfa3;font-size:15px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s,border-color .2s;">✕</button>
+        <div style="font-size:11px;letter-spacing:3.5px;color:#a8842f;font-weight:700;margin-bottom:11px;">{site.modal.eyebrow}</div>
+        <h3 style="font-family:'Archivo Black';font-size:clamp(23px,3vw,30px);margin:0 0 9px;line-height:1.06;color:#f4ede0;">{site.modal.heading}</h3>
+        <p style="font-size:14px;color:#b6a98f;line-height:1.6;margin:0 0 26px;max-width:40ch;">{site.modal.body}</p>
+        <div style="display:grid;gap:17px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="hb-modal-row">
+            <div>
+              <label class="hb-field-label" for="hb-enquire-name">Name</label>
+              <input id="hb-enquire-name" type="text" autocomplete="name" placeholder={site.modal.placeholderName}>
             </div>
-            <select id="hb-enquire-product" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;color:#cdbfa3;font-family:inherit;font-size:14px;outline:none;appearance:none;">
+            <div>
+              <label class="hb-field-label" for="hb-enquire-email">Email</label>
+              <input id="hb-enquire-email" type="email" autocomplete="email" placeholder={site.modal.placeholderEmail}>
+            </div>
+          </div>
+          <div>
+            <label class="hb-field-label" for="hb-enquire-product">What you're after</label>
+            <select id="hb-enquire-product">
               {site.modal.products.map((p) => (<option style="color:#111;">{p}</option>))}
             </select>
-            <select id="hb-enquire-role" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;color:#cdbfa3;font-family:inherit;font-size:14px;outline:none;appearance:none;">
+          </div>
+          <div>
+            <label class="hb-field-label" for="hb-enquire-role">You are</label>
+            <select id="hb-enquire-role">
               {site.modal.roles.map((r) => (<option style="color:#111;">{r}</option>))}
             </select>
-            <textarea id="hb-enquire-message" placeholder={site.modal.placeholderMessage} rows="3" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;color:#f4ede0;font-family:inherit;font-size:14px;outline:none;resize:vertical;"></textarea>
-            <a id="hb-modal-send" href={`mailto:${site.brand.email}`} style="text-align:center;font-size:13px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:15px;border-radius:8px;box-shadow:0 14px 30px -12px rgba(243,205,107,.6);">{site.modal.submitLabel}</a>
-            <div style="text-align:center;font-size:11px;color:#8a7e66;">{site.modal.emailNote}</div>
           </div>
+          <div>
+            <label class="hb-field-label" for="hb-enquire-message">Your message</label>
+            <textarea id="hb-enquire-message" placeholder={site.modal.placeholderMessage} rows="3"></textarea>
+          </div>
+          <a id="hb-modal-send" href={`mailto:${site.brand.email}`} style="text-align:center;font-size:13px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:16px;border-radius:8px;box-shadow:0 14px 30px -12px rgba(243,205,107,.55);margin-top:4px;">{site.modal.submitLabel}</a>
+          <div style="text-align:center;font-size:11px;color:#8a7e66;letter-spacing:.3px;">{site.modal.emailNote}</div>
         </div>
       </div>
     </div>

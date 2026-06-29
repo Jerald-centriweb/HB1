@@ -321,17 +321,5 @@ $$('.hb-natbg-img').forEach((img) => {
 });
 setTimeout(() => $$('.hb-natbg-img').forEach((i) => i.classList.add('is-loaded')), 2200);
 
-// ---- certification badges: swap the text emblem for a real logo if one exists ----
-// Drop official logos at /assets/certs/<mark>.png (mgo/haccp/rmp/nz). If a file
-// is missing the styled text emblem stays — no broken image, no console error.
-$$('.hb-cert-logo').forEach((img) => {
-  const mark = img.parentElement ? img.parentElement.querySelector('.hb-cert-mark') : null;
-  const fail = () => {
-    img.style.display = 'none';
-    if (mark) mark.style.display = 'flex';
-  };
-  // Real badge shows by default; fall back to the text emblem if it fails to load.
-  // Handle the case where the error already fired before this script ran.
-  if (img.complete && img.naturalWidth === 0) fail();
-  else img.addEventListener('error', fail);
-});
+// Certification emblems are rendered as crisp inline text/SVG marks (no raster
+// logos), so there is nothing to fall back from here.
