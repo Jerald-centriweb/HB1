@@ -53,7 +53,10 @@ const enquireNameInput = document.getElementById('hb-enquire-name');
 const enquireEmailInput = document.getElementById('hb-enquire-email');
 const enquireRoleSel = document.getElementById('hb-enquire-role');
 const enquireMessageTA = document.getElementById('hb-enquire-message');
-const modalSendLink = document.getElementById('hb-modal-send');
+const modalSendBtn = document.getElementById('hb-modal-send');
+const modalForm = document.getElementById('hb-modal-form');
+const modalSuccess = document.getElementById('hb-modal-success');
+const modalError = document.getElementById('hb-modal-error');
 
 function setEnquire(open, product) {
   if (!modal || !modalCard) return;
@@ -62,6 +65,14 @@ function setEnquire(open, product) {
       const opts = Array.from(enquireProductSel.options);
       const match = opts.find((o) => o.text === product);
       if (match) enquireProductSel.value = match.value;
+    }
+    // reset to the form view each time it opens
+    if (modalForm) modalForm.style.display = 'grid';
+    if (modalSuccess) modalSuccess.style.display = 'none';
+    if (modalError) modalError.style.display = 'none';
+    if (modalSendBtn) {
+      modalSendBtn.disabled = false;
+      modalSendBtn.textContent = site.modal.submitLabel;
     }
     modal.style.opacity = '1';
     modal.style.pointerEvents = 'auto';
@@ -82,25 +93,56 @@ $$('[data-enquire]').forEach((el) =>
   })
 );
 
-// ---- send enquiry: build mailto on click ----
-if (modalSendLink) {
-  modalSendLink.addEventListener('click', () => {
-    const name = enquireNameInput ? enquireNameInput.value.trim() : '';
-    const email = enquireEmailInput ? enquireEmailInput.value.trim() : '';
-    const product = enquireProductSel ? enquireProductSel.value : '';
-    const role = enquireRoleSel ? enquireRoleSel.value : '';
-    const message = enquireMessageTA ? enquireMessageTA.value.trim() : '';
-    const subject = 'Enquiry: ' + product;
-    const body = [
-      'Name: ' + (name || '(not provided)'),
-      'Email: ' + (email || '(not provided)'),
-      'Role: ' + role,
-      'Product: ' + product,
-      '',
-      message,
-    ].join('\n');
-    const base = modalSendLink.href.split('?')[0];
-    modalSendLink.href = base + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+// ---- send enquiry: POST to the configured webhook (mailto fallback) ----
+const WEBHOOK = site.forms && site.forms.webhook;
+const showErr = (msg) => {
+  if (!modalError) return;
+  modalError.textContent = msg;
+  modalError.style.display = 'block';
+};
+function mailtoFallback(d) {
+  const subject = 'Enquiry: ' + d.product;
+  const body = [
+    'Name: ' + (d.name || '(not provided)'),
+    'Email: ' + (d.email || '(not provided)'),
+    'Role: ' + d.role,
+    'Product: ' + d.product,
+    '',
+    d.message,
+  ].join('\n');
+  window.location.href =
+    'mailto:' + site.brand.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+if (modalSendBtn) {
+  modalSendBtn.addEventListener('click', async () => {
+    if (modalError) modalError.style.display = 'none';
+    const d = {
+      name: enquireNameInput ? enquireNameInput.value.trim() : '',
+      email: enquireEmailInput ? enquireEmailInput.value.trim() : '',
+      product: enquireProductSel ? enquireProductSel.value : '',
+      role: enquireRoleSel ? enquireRoleSel.value : '',
+      message: enquireMessageTA ? enquireMessageTA.value.trim() : '',
+    };
+    if (!d.name) return showErr('Please add your name.');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) return showErr('Please add a valid email address.');
+
+    modalSendBtn.disabled = true;
+    modalSendBtn.textContent = 'SENDING…';
+    try {
+      if (!WEBHOOK) throw new Error('no-webhook');
+      await fetch(WEBHOOK, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new URLSearchParams({ ...d, source: 'honeybadgers.co', page: location.href }),
+      });
+      if (modalForm) modalForm.style.display = 'none';
+      if (modalSuccess) modalSuccess.style.display = 'block';
+    } catch (err) {
+      // network/webhook unavailable: hand off to the visitor's email client
+      mailtoFallback(d);
+      modalSendBtn.disabled = false;
+      modalSendBtn.textContent = site.modal.submitLabel;
+    }
   });
 }
 $$('[data-close-enquire]').forEach((el) =>

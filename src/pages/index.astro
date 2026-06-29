@@ -105,7 +105,7 @@ const btnStyle = {
       <div id="hb-scroll-hint" style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:4;font-size:10px;letter-spacing:3px;color:#cdbfa3;display:flex;flex-direction:column;align-items:center;gap:10px;transition:opacity .4s;">SCROLL<span style="position:relative;display:block;width:1px;height:42px;background:linear-gradient(rgba(216,172,78,.45),rgba(216,172,78,.04));"><span style="position:absolute;left:50%;top:0;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#f3cd6b;box-shadow:0 0 8px #f3cd6b;animation:hb-scrolldot 1.9s cubic-bezier(.7,0,.3,1) infinite;"></span></span></div>
     </section>
 
-    <section id="story" class="hb-story" style="position:relative;overflow:hidden;display:flex;align-items:center;min-height:80vh;padding:clamp(60px,8vw,104px) clamp(18px,4vw,56px);">
+    <section id="story" class="hb-story" style="position:relative;overflow:hidden;display:flex;align-items:center;min-height:auto;padding:clamp(64px,9vw,112px) clamp(18px,4vw,56px);">
       <NatureBg name="hero-valley" mobileName="hero-valley-portrait" kenburns={true}
         sizes="100vw"
         scrim="background:linear-gradient(90deg,rgba(8,6,3,.9) 0%,rgba(8,6,3,.52) 44%,rgba(8,6,3,.18) 72%,rgba(8,6,3,0) 100%),linear-gradient(180deg,#0b0907 0%,rgba(11,9,7,.55) 9%,rgba(11,9,7,0) 32%,rgba(11,9,7,0) 68%,rgba(11,9,7,.55) 91%,#0b0907 100%);" />
@@ -390,7 +390,7 @@ const btnStyle = {
         <div style="font-size:11px;letter-spacing:3.5px;color:#a8842f;font-weight:700;margin-bottom:11px;">{site.modal.eyebrow}</div>
         <h3 style="font-family:'Archivo Black';font-size:clamp(23px,3vw,30px);margin:0 0 9px;line-height:1.06;color:#f4ede0;">{site.modal.heading}</h3>
         <p style="font-size:14px;color:#b6a98f;line-height:1.6;margin:0 0 26px;max-width:40ch;">{site.modal.body}</p>
-        <div style="display:grid;gap:17px;">
+        <div id="hb-modal-form" style="display:grid;gap:17px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="hb-modal-row">
             <div>
               <label class="hb-field-label" for="hb-enquire-name">Name</label>
@@ -417,8 +417,14 @@ const btnStyle = {
             <label class="hb-field-label" for="hb-enquire-message">Your message</label>
             <textarea id="hb-enquire-message" placeholder={site.modal.placeholderMessage} rows="3"></textarea>
           </div>
-          <a id="hb-modal-send" href={`mailto:${site.brand.email}`} style="text-align:center;font-size:13px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:16px;border-radius:8px;box-shadow:0 14px 30px -12px rgba(243,205,107,.55);margin-top:4px;">{site.modal.submitLabel}</a>
+          <button id="hb-modal-send" type="button" style="text-align:center;font-size:13px;letter-spacing:1.5px;font-weight:700;color:#0b0907;background:linear-gradient(180deg,#f3cd6b,#c8922f);padding:16px;border:none;border-radius:8px;box-shadow:0 14px 30px -12px rgba(243,205,107,.55);margin-top:4px;width:100%;font-family:inherit;">{site.modal.submitLabel}</button>
+          <div id="hb-modal-error" role="alert" style="display:none;text-align:center;font-size:12px;color:#e9a3a3;"></div>
           <div style="text-align:center;font-size:11px;color:#8a7e66;letter-spacing:.3px;">{site.modal.emailNote}</div>
+        </div>
+        <div id="hb-modal-success" style="display:none;text-align:center;padding:22px 0 6px;">
+          <div style="width:58px;height:58px;border-radius:50%;border:1px solid rgba(243,205,107,.5);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;background:radial-gradient(circle,rgba(243,205,107,.16),transparent 70%);font-size:27px;color:#f3cd6b;">✓</div>
+          <h3 style="font-family:'Archivo Black';font-size:clamp(20px,2.6vw,24px);margin:0 0 8px;color:#f4ede0;">{site.modal.successHeading}</h3>
+          <p style="font-size:14px;color:#b6a98f;line-height:1.6;margin:0 auto;max-width:34ch;">{site.modal.successBody}</p>
         </div>
       </div>
     </div>

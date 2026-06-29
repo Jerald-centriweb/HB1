@@ -217,5 +217,14 @@ export const site = {
     placeholderMessage: 'What are you after? (e.g. MGO 829+ jars, FURY sachets, bulk supply)',
     submitLabel: 'SEND ENQUIRY →',
     emailNote: 'or email us directly at hello@honeybadgers.co',
+    successHeading: 'Enquiry sent.',
+    successBody: 'Thanks, we have your details and will be in touch shortly.',
+  },
+
+  // Where the enquiry form posts. The browser POSTs the fields here; the n8n
+  // workflow handles routing (CRM, email, notifications). Leave blank to fall
+  // back to a mailto link.
+  forms: {
+    webhook: 'https://n8n.centriweb.com/webhook/e061096b-ff02-4f60-b3cf-851bae1a79ba',
   },
 };
