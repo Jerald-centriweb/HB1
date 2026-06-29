@@ -182,6 +182,40 @@ const orgSchema = {
         }
       }
 
+      /* ── MOBILE HERO: zoom the photo out a touch + fit content so the MGO
+         trust mark is never clipped by the browser viewport ─────────────── */
+      @media (max-width: 640px) {
+        .hb-hero {
+          padding-top: 90px !important;
+          padding-bottom: 40px !important;
+        }
+        /* drop the desktop-only parallax oversize + ken-burns scale so the
+           background reads less magnified on a tall phone screen */
+        .hb-hero .hb-natbg-inner {
+          inset: 0 !important;
+        }
+        .hb-hero .hb-kb {
+          animation: none !important;
+          transform: none !important;
+        }
+        .hb-hero h1 {
+          font-size: 44px !important;
+        }
+        .hb-hero-content > p {
+          margin-top: 18px !important;
+        }
+        .hb-hero-content > div:nth-child(4) {
+          margin-top: 26px !important;
+        }
+        .hb-hero-content > div:nth-child(5) {
+          margin-top: 22px !important;
+        }
+        /* decorative scroll cue collides with the trust mark on short phones */
+        #hb-scroll-hint {
+          display: none !important;
+        }
+      }
+
       /* Respect prefers-reduced-motion */
       @media (prefers-reduced-motion: reduce) {
         #hb-hero-video,
