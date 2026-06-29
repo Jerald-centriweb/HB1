@@ -29,11 +29,11 @@ const big = mark.length >= 5 ? 13 : 21;
       <path id={`cs-bot-${uid}`} d="M50,50 m-36,0 a36,36 0 1,0 72,0 a36,36 0 1,0 -72,0" fill="none" />
     </defs>
 
-    <!-- medallion fill + rings -->
-    <circle cx="50" cy="50" r="47" fill={`url(#csr-${uid})`} />
-    <circle cx="50" cy="50" r="47" fill="none" stroke={`url(#csg-${uid})`} stroke-width="2" />
-    <circle cx="50" cy="50" r="42.5" fill="none" stroke="#d8ac4e" stroke-opacity="0.55" stroke-width="0.7" />
-    <circle cx="50" cy="50" r="29.5" fill="none" stroke="#d8ac4e" stroke-opacity="0.5" stroke-width="0.9" />
+    <!-- medallion: solid disc + gold rings -->
+    <circle cx="50" cy="50" r="47.5" fill="#0b0805" />
+    <circle cx="50" cy="50" r="47.5" fill={`url(#csr-${uid})`} />
+    <circle cx="50" cy="50" r="47.5" fill="none" stroke={`url(#csg-${uid})`} stroke-width="2.6" />
+    <circle cx="50" cy="50" r="42.5" fill="none" stroke="#d8ac4e" stroke-opacity="0.6" stroke-width="0.8" />
 
     <!-- curved rim text -->
     {top && (
@@ -56,7 +56,7 @@ const big = mark.length >= 5 ? 13 : 21;
     {fern ? (
       <SilverFern size={20} />
     ) : (
-      <span style={`font-family:'Archivo Black';font-size:${big}px;letter-spacing:.5px;background:linear-gradient(180deg,#f9e29a,#d99f2c);-webkit-background-clip:text;background-clip:text;color:transparent;`}>{mark}</span>
+      <span style={`font-family:'Archivo Black';font-size:${big}px;letter-spacing:.5px;color:#f6efe1;`}>{mark}</span>
     )}
   </div>
 </div>
