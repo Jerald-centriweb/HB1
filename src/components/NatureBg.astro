@@ -15,13 +15,15 @@ interface Props {
   scrim?: string;        // CSS background value layered over the image
   eager?: boolean;       // hero = true (preload, no lazy)
   kenburns?: boolean;
+  version?: string | number; // cache-bust when an asset is replaced in place
 }
-const { name, mobileName, sizes = '100vw', scrim, eager = false, kenburns = false } = Astro.props;
+const { name, mobileName, sizes = '100vw', scrim, eager = false, kenburns = false, version } = Astro.props;
 const m = manifest[name];
+const v = version ? `?v=${version}` : '';
 const srcsetFor = (n: string) =>
-  manifest[n].widths.map((w: number) => `/assets/nature/${n}-${w}.webp ${w}w`).join(', ');
+  manifest[n].widths.map((w: number) => `/assets/nature/${n}-${w}.webp${v} ${w}w`).join(', ');
 const largest = Math.max(...m.widths);
-const fallback = `/assets/nature/${name}-${largest}.webp`;
+const fallback = `/assets/nature/${name}-${largest}.webp${v}`;
 ---
 <div class="hb-natbg" style="position:absolute;inset:0;z-index:0;overflow:hidden;">
   <div class="hb-natbg-inner" style="position:absolute;inset:-6% 0;will-change:transform;">
